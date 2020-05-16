@@ -1,4 +1,4 @@
-/whatMemeAmI/main/staticfiles
-/whatMemeAmI/main/mediafiles
-/whatMemeAmI/main/database
+./project-one/main/database
+./project-one/mediafiles
+./project-one/staticfiles
 
