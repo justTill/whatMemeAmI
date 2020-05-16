@@ -1,1 +1,40 @@
-# Empty workflow for now
+name: Check_And_Deploy
+on:
+  push:
+
+env:
+  SECRET_KEY: ${{ secrets.SECRET_KEY_WHAT_MEME_AM_I }}
+
+jobs:
+  healthcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Intall dependencies
+        run: |
+          pip3 install setuptools wheel
+          pip3 install -r ./project-one/requirements.txt
+
+      - name: create databse dir
+        run: cd ./project-one/ && mkdir database && python3 manage.py migrate
+
+      - name: Run test
+        run: cd ./project-one/ && python3 manage.py test
+
+  buildAndPush:
+    needs: healthcheck
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Log into registry
+      run: docker login -u ${{ secrets.DOCKERNAME }} -p ${{ secrets.DOCKERPASSWORD }}
+
+    - name: Build images
+      run: DATABASE_NAME=what_meme SQL_USER=what_meme SQL_PASSWORD=what_meme docker-compose -f docker-compose.prod.yml build
+
+    - name: Push image
+      if: github.ref == 'refs/heads/master'
+      run: |
+        DATABASE_NAME=what_meme SQL_USER=what_meme SQL_PASSWORD=what_meme docker-compose -f docker-compose.prod.yml push
