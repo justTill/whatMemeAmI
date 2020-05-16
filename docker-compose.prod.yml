@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   memeapp:
-    image: justtill/what_meme_am_i:latest
+    image: justtill/what_meme_am_i:what_meme_am_i_latest
     build:
       context: ./project-one
       dockerfile: Dockerfile.prod
