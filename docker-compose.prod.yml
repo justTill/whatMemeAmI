@@ -1,0 +1,48 @@
+version: '3.7'
+
+services:
+  memeapp:
+    image: justtill/what_meme_am_i:what_meme_am_i_latest
+    build:
+      context: ./project-one
+      dockerfile: Dockerfile.prod
+    command: gunicorn whatMemeAmI.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/mediafiles
+    expose:
+      - 8000
+    environment:
+      - SECRET_KEY_WHAT_MEME_AM_I=${SECRET_KEY}
+      - SQL_ENGINE=django.db.backends.postgresql
+      - DATABASE=postgres
+      - SQL_DATABASE=${DATABASE_NAME}
+      - SQL_USER=${SQL_USER}
+      - SQL_PASSWORD=${SQL_PASSWORD}
+      - SQL_PORT=5432
+      - SQL_HOST=db
+    depends_on:
+      - db
+  db:
+    image: postgres:11.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=${SQL_USER}
+      - POSTGRES_PASSWORD=${SQL_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
+  nginx:
+    image: justtill/what_meme_am_i:nginx_latest
+    build: ./nginx
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/mediafiles
+    ports:
+      - 1337:80
+    depends_on:
+      - memeapp
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:

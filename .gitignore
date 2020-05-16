@@ -1,4 +1,4 @@
-/whatMemeAmI/main/staticfiles
-/whatMemeAmI/main/mediafiles
-/whatMemeAmI/main/database
-
+/project-one/main/database/db.sqlite3
+/project-one/mediafiles
+/project-one/staticfiles
+__pycache__

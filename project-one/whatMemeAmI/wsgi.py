@@ -1,5 +1,5 @@
 """
-WSGI config for whatMemeAmI project.
+WSGI config for project-one project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
