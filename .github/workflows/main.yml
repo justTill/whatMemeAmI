@@ -3,7 +3,7 @@ on:
   push:
 
 env:
-  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  SECRET_KEY_WHAT_MEME_AM_I: ${{ secrets.SECRET_KEY_WHAT_MEME_AM_I }}
 
 jobs:
   healthcheck:
