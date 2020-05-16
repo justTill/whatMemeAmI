@@ -17,7 +17,7 @@ jobs:
           pip3 install -r ./project-one/requirements.txt
 
       - name: create databse dir
-        run: cd ./project-one/ && mkdir database && python3 manage.py migrate
+        run: cd ./project-one/main && mkdir database && python3 manage.py migrate
 
       - name: Run test
         run: cd ./project-one/ && python3 manage.py test
