@@ -3,7 +3,7 @@ version: '3.7'
 services:
   memeapp:
     restart: always
-    image: justtill/what_meme_am_i:latest
+    image: justtill/what_meme_am_i:what_meme_am_i_latest
     command: gunicorn whatMemeAmI.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - static_volume:/home/app/web/staticfiles
