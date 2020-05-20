@@ -1,11 +1,7 @@
 {% extends './base_layout.html' %}
 {% block content %}
-<h2>Main Page</h2>
-<form>
-    {% csrf_token %}
-    <button>upload Image</button>
-    <button>Bin ich ein Meme(KNN)</button>
-    <button>Bin ich ein Meme(other Algorithm)</button>
-</form>
+    <h2>Main Page</h2>
+
+    {% include 'templates/uploadImageForm.html' %}
 
 {% endblock %}

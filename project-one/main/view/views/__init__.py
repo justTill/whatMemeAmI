@@ -1,1 +1,1 @@
-from main.view.views.index import *
+from .index import *
