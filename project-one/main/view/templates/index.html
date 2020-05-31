@@ -1,2 +1,7 @@
 {% extends './base_layout.html' %}
-<h1> Hier kommt das Designe der Webseite hin</h1>
+{% block content %}
+    <h2>Main Page</h2>
+
+    {% include 'templates/uploadImageForm.html' %}
+
+{% endblock %}
