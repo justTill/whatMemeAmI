@@ -1,9 +1,13 @@
 <form action="{% url 'main:classify_image' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
+    <div>
+        <h2>All available Images by name</h2>
     {% for name in image_names%}
     <p>{{ name }}</p>
     {% endfor %}
+    </div>
     <br>
+    <h3> Classifiy Image</h3>
     <div class="fieldWrapper">
         <label>Bild Name:</label>
         <br>
