@@ -3,12 +3,17 @@ from django.shortcuts import render
 from django.template import loader
 from django.urls import reverse
 from main.controller.forms import UploadImageForm
+from main.controller.logic import ImageLogic
+
+imageLogic = ImageLogic()
 
 
 def index(request):
     template = loader.get_template('./templates/index.html')
+    image_names = imageLogic.get_all_image_names()
     context = {
-        'upload_image_form': UploadImageForm
+        'image_names': image_names,
+        'upload_image_form': UploadImageForm,
     }
     return HttpResponse(template.render(context, request))
 
@@ -24,3 +29,14 @@ def save_new_user_image(request):
         else:
             context['upload_image_form'] = form
     return render(request, 'templates/index.html', context)
+
+
+def classify_image(request):
+    image_name = request.POST.getlist('imageName')
+    button = request.POST.get('button')
+    if image_name:
+        if button == 'agent_one':
+            pass  # Do Image Classification with agent one an get result and show it
+        elif button == 'agent_two':
+            pass  # Do Image Classification with agent two an get result and show it
+    return HttpResponseRedirect(reverse('main:index'))
