@@ -6,11 +6,11 @@ pip is already installed if you are using Python 2 >=2.7.9 or Python 3 >=3.4 dow
 
 Now pip need to install all dependencies for the project.
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 After that we can run following command to start our application.
 ```
-python3 manage.py runserver --settings=whatMemeAmI.local_settings
+python manage.py runserver --settings=whatMemeAmI.local_settings
 
 ```
 Our application can be accessed via: [`http://127.0.0.1:8000`](http://127.0.0.1:8000)
