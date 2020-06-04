@@ -11,5 +11,8 @@ class SecondImagePreprocessor:
     """
     Implement keras Preprocessing but for Images in traningData Folder
     """
-    def preporcessing_training_dataset(self):
+    def preprocessing_training_dataset(self):
+        pass
+
+    def preprocess_image(self):
         pass
