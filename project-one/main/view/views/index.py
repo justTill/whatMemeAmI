@@ -4,13 +4,16 @@ from django.template import loader
 from django.urls import reverse
 from main.controller.forms import UploadImageForm
 from main.controller.logic import ImageLogic
+from main.controller.logic import SecondImagePreprocessor
 
 imageLogic = ImageLogic()
+p = SecondImagePreprocessor()
 
 
 def index(request):
     template = loader.get_template('./templates/index.html')
     image_names = imageLogic.get_all_image_names()
+    p.preprocessing_training_dataset();
     context = {
         'image_names': image_names,
         'upload_image_form': UploadImageForm,
