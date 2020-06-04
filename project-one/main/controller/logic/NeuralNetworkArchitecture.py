@@ -7,13 +7,13 @@ from tensorflow.keras.layers import Dense
 
 
 class NeuralNetworkArchitecture:
-
     """
     width = The width of our input images
     height = The height of the input images
     depth = The number of channels in our input images ( 3 for RGB)
     classes = The total number of classes we want to recognize
     """
+
     @staticmethod
     def build_neural_network_architecture(width, height, depth, classes):
         # We use the Sequential class since we will be sequentially adding layers to the model
