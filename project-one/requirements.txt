@@ -68,7 +68,7 @@ sqlparse==0.3.0
 structlog==20.1.0
 tensorboard==2.2.2
 tensorboard-plugin-wit==1.6.0.post3
-tensorflow>=2.2.0
+tensorflow==1.14.0
 tensorflow-estimator==2.2.0
 termcolor==1.1.0
 tzlocal==2.0.0
