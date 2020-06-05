@@ -8,6 +8,13 @@ Now pip need to install all dependencies for the project.
 ```
 pip install -r requirements.txt
 ```
+Create under the "main" folder an empty folder with following name "database"
+
+Now we need to migrate the Database
+```
+python manage.py migrate
+```
+
 After that we can run following command to start our application.
 ```
 python manage.py runserver --settings=whatMemeAmI.local_settings
