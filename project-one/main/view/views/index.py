@@ -4,10 +4,11 @@ from django.template import loader
 from django.urls import reverse
 from main.controller.forms import UploadImageForm
 from main.controller.logic import ImageLogic
-from main.controller.logic import SecondImagePreprocessor
+from main.controller.secondImageClassificator import ImagePreprocessor
+
 
 imageLogic = ImageLogic()
-p = SecondImagePreprocessor()
+p = ImagePreprocessor()
 
 
 def index(request):
@@ -41,5 +42,10 @@ def classify_image(request):
         if button == 'agent_one':
             pass  # Do Image Classification with agent one an get result and show it
         elif button == 'agent_two':
-            pass  # Do Image Classification with agent two an get result and show it
+            try:
+                p.preprocessing_user_image(image_name)
+            except ValueError as error:
+                errorMessage = error.__str__()
+                print(errorMessage)
+
     return HttpResponseRedirect(reverse('main:index'))
