@@ -13,7 +13,7 @@ p = SecondImagePreprocessor()
 def index(request):
     template = loader.get_template('./templates/index.html')
     image_names = imageLogic.get_all_image_names()
-    p.preprocessing_training_dataset();
+    p.preprocessing_training_dataset()
     context = {
         'image_names': image_names,
         'upload_image_form': UploadImageForm,
