@@ -48,7 +48,7 @@ RUN mkdir $APP_HOME/mediafiles
 WORKDIR $APP_HOME
 
 # install dependencies
-RUN apt-get update && apt-get install -y libpq5 gcc netcat postgresql
+RUN apt-get update && apt-get install -y libpq5 gcc netcat postgresql libgtk2.0-dev libglib2.0-0
 COPY --from=builder /usr/src/app/wheels /wheels
 COPY --from=builder /usr/src/app/requirements.txt .
 RUN pip install --upgrade pip

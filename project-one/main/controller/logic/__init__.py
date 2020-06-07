@@ -1,3 +1,2 @@
-from .firstImagePreprocessor import *
-from .secondImagePreprocessor import *
-from .imageLogic import *
+from .ImageLogic import *
+from .ImagePreprocessor import *

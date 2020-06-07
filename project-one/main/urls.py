@@ -8,5 +8,4 @@ urlpatterns = [
     path('', index, name='index'),
     url(r'^save_new_user_image', save_new_user_image, name='save_new_user_image'),
     url(r'^classify_image', classify_image, name='classify_image'),
-
 ]
