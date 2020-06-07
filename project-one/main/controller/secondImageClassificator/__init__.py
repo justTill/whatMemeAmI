@@ -1,2 +1,2 @@
 from .AgentTrainer import *
-from .NeuralNetworkArchitecture import *
+from .Agents import *

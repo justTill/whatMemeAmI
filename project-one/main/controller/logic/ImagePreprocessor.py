@@ -55,7 +55,7 @@ class ImagePreprocessor:
             label = imagePath.split(os.path.sep)[-2]
             if label == "badLuckBrian":
                 label = 1
-            elif label == "hideThePain":
+            elif label == "hideThePainHarold":
                 label = 2
             elif label == "oneDoesNotSimply":
                 label = 3

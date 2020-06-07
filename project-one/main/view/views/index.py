@@ -5,11 +5,11 @@ from django.urls import reverse
 from main.controller.forms import UploadImageForm
 from main.controller.logic import ImageLogic
 from main.controller.logic import ImagePreprocessor
-from main.controller.secondImageClassificator import NeuralNetworkArchitecture
+from main.controller.secondImageClassificator import Agents
 
 imageLogic = ImageLogic()
 p = ImagePreprocessor()
-n = NeuralNetworkArchitecture()
+a = Agents()
 
 
 def index(request):
@@ -41,7 +41,7 @@ def classify_image(request):
             pass  # Do Image Classification with agent one an get result and show it
         elif button == 'agent_two':
             try:
-                results = n.random_agent(random_seed)
+                results = a.random_agent(random_seed)
                 context.update({
                     "image_label": results[0],
                     "guess_label": results[1],

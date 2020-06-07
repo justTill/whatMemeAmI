@@ -9,7 +9,7 @@ from tensorflow.keras.layers import Dense
 from main.controller.logic import ImagePreprocessor
 
 
-class NeuralNetworkArchitecture:
+class Agents:
     """
     width = The width of our input images
     height = The height of the input images
@@ -17,7 +17,7 @@ class NeuralNetworkArchitecture:
     classes = The total number of classes we want to recognize
     """
 
-    def build_neural_network_architecture(self, width, height, depth, classes):
+    def build_neural_network_agent(self, width, height, depth, classes):
         # We use the Sequential class since we will be sequentially adding layers to the agent
         agent = Sequential()
         inputShape = (height, width, depth)
@@ -67,7 +67,7 @@ class NeuralNetworkArchitecture:
         if label_number == 1:
             return "badLuckBrian"
         elif label_number == 2:
-            return "hideThePain"
+            return "hideThePainHarold"
         elif label_number == 3:
             return "oneDoesNotSimply"
         else:
