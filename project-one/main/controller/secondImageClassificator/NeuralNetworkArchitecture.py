@@ -6,7 +6,7 @@ from tensorflow.keras.layers import MaxPooling2D
 from tensorflow.keras.layers import Activation
 from tensorflow.keras.layers import Flatten
 from tensorflow.keras.layers import Dense
-from .ImagePreprocessor import ImagePreprocessor
+from main.controller.logic import ImagePreprocessor
 
 
 class NeuralNetworkArchitecture:

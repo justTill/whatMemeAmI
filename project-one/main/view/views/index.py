@@ -4,7 +4,7 @@ from django.template import loader
 from django.urls import reverse
 from main.controller.forms import UploadImageForm
 from main.controller.logic import ImageLogic
-from main.controller.secondImageClassificator import ImagePreprocessor
+from main.controller.logic import ImagePreprocessor
 from main.controller.secondImageClassificator import NeuralNetworkArchitecture
 
 
