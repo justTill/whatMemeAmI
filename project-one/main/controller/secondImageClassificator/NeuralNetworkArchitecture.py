@@ -78,9 +78,9 @@ class NeuralNetworkArchitecture:
         number_of_labels = {}
 
         for label in labels:
-            lable_name = self.get_label_name(label)
-            if number_of_labels.__contains__(lable_name):
-                number_of_labels.update({lable_name: number_of_labels[lable_name] + 1})
+            label_name = self.get_label_name(label)
+            if number_of_labels.__contains__(label_name):
+                number_of_labels.update({label_name: number_of_labels[label_name] + 1})
             else:
-                number_of_labels.update({lable_name: 1})
+                number_of_labels.update({label_name: 1})
         return number_of_labels[guessed_label] / labels.size * 100
