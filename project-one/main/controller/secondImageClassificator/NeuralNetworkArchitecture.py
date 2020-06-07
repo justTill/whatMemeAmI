@@ -57,12 +57,11 @@ class NeuralNetworkArchitecture:
         image_label = labels[random_image_number]
         random_label = random.randrange(0, 4, 1)
 
-        is_classification_correct = image_label == random_label
         image_label_name = self.get_label_name(image_label)
         guessed_label = self.get_label_name(random_label)
         percentage = self.get_percentage_of_label(labels, guessed_label)
 
-        return image_label_name, guessed_label, is_classification_correct, percentage
+        return image_label_name, guessed_label, percentage
 
     def get_label_name(self, label_number):
         if label_number == 1:

@@ -7,7 +7,6 @@ from main.controller.logic import ImageLogic
 from main.controller.logic import ImagePreprocessor
 from main.controller.secondImageClassificator import NeuralNetworkArchitecture
 
-
 imageLogic = ImageLogic()
 p = ImagePreprocessor()
 n = NeuralNetworkArchitecture()
@@ -15,11 +14,7 @@ n = NeuralNetworkArchitecture()
 
 def index(request):
     template = loader.get_template('./templates/index.html')
-    image_names = imageLogic.get_all_image_names()
-    context = {
-        'image_names': image_names,
-        'upload_image_form': UploadImageForm,
-    }
+    context = get_context()
     return HttpResponse(template.render(context, request))
 
 
@@ -40,14 +35,29 @@ def classify_image(request):
     image_name = request.POST.getlist('imageName')
     random_seed = request.POST.get('randomSeed')
     button = request.POST.get('button')
+    context = get_context()
     if image_name and random_seed:
         if button == 'agent_one':
             pass  # Do Image Classification with agent one an get result and show it
         elif button == 'agent_two':
             try:
-                n.random_agent(random_seed)
+                results = n.random_agent(random_seed)
+                context.update({
+                    "image_label": results[0],
+                    "guess_label": results[1],
+                    "percentage": results[2]
+                })
             except ValueError as error:
                 errorMessage = error.__str__()
                 print(errorMessage)
 
-    return HttpResponseRedirect(reverse('main:index'))
+    return render(request, 'templates/index.html', context)
+
+
+def get_context():
+    image_names = imageLogic.get_all_image_names()
+    context = {
+        'image_names': image_names,
+        'upload_image_form': UploadImageForm,
+    }
+    return context

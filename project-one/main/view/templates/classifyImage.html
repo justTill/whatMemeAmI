@@ -21,3 +21,13 @@
     <button type="submit" name="button" value="agent_one">Agent 1 Klassifizierung</button>
     <button type="submit" name="button" value="agent_two">Agent 2 Klassifizierung</button>
 </form>
+
+<div>
+   {% if image_label and guess_label and percentage %}
+    <span>Bild welches Klassifiziert wurde hat das Label: {{  image_label }}  </span>
+    <br>
+    <span>Label welches der Agent behauptet hat das Bild: {{  guess_label }}  </span>
+    <br>
+    <span>Der Agent ist sich zu: {{  percentage }}% sicher, dass das Bild richtig Klassifiziert wurde  </span>
+   {% endif %}
+</div>
