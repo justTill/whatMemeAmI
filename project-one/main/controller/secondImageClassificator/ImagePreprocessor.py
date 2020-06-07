@@ -32,7 +32,7 @@ class ImagePreprocessor:
 
         return data
 
-    def preprocessing_training_dataset(self):
+    def preprocessing_training_dataset(self, random_seed):
         # initialize the data and labels
         print("[INFO] loading Training images...")
         data = []
@@ -40,7 +40,7 @@ class ImagePreprocessor:
 
         # grab the image paths and randomly shuffle them
         imagePaths = sorted(list(paths.list_images("main/trainingData")))
-        random.seed(42)
+        random.seed(random_seed)
         random.shuffle(imagePaths)
 
         # loop over the input images
@@ -50,8 +50,8 @@ class ImagePreprocessor:
             image = cv2.resize(image, (64, 64))
             image = img_to_array(image)
             data.append(image)
-        # extract the class label from the image path and update the
-        # labels list
+            # extract the class label from the image path and update the
+            # labels list
             label = imagePath.split(os.path.sep)[-2]
             if label == "badLuckBrian":
                 label = 1

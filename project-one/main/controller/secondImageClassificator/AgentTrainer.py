@@ -17,10 +17,14 @@ aug = ImageDataGenerator(rotation_range=30, width_shift_range=0.1,
                          horizontal_flip=True, fill_mode="nearest")
 
 
-class ModelTrainer:
+class AgentTrainer:
 
     def split_data_with_labels_into_test_and_training_set(self, data, labels):
         # Split data 75% training 25% testing
+        # trainX : training data
+        # testX :  test data
+        # trainY : training labels
+        # testY : test labels
         (trainX, testX, trainY, testY) = train_test_split(data,
                                                           labels, test_size=0.25, random_state=42)
         # convert the labels from integers to vectors
