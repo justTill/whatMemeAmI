@@ -10,6 +10,10 @@ pip install -r requirements.txt
 ```
 Create under the "main" folder an empty folder with following name "database"
 
+Now we need to collect all staticfiles
+```
+python manage.py collectstatic --no-input --clear
+```
 Now we need to migrate the Database
 ```
 python manage.py migrate
