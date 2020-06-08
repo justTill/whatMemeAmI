@@ -1,10 +1,11 @@
 <form action="{% url 'main:random_agent' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-        {% load static %}
+    {% load static %}
 
     <h3> Classifiy Random Image</h3>
     <div class="fieldWrapper">
-        Der Random Agent wählt ein zufälliges Bild aus den Testbeispielen und versucht dieses zu "Klassifizieren" (er wählt eine zufällige Klasse aus).
+        Der Random Agent wählt ein zufälliges Bild aus den Testbeispielen und versucht dieses zu "Klassifizieren" (er
+        wählt eine zufällige Klasse aus).
         Anschließend wird berechnet wie hoch die Wahrscheinlichkeit ist, dass dieser richtig liegt
         <label>Random Seed:</label>
         <br>
@@ -15,27 +16,31 @@
 </form>
 
 <div>
-   {% if image_label and guess_label and percentage %}
+    {% if image_label and guess_label and percentage %}
     <table>
         <thead>
-            <tr>
-                <th>Klassifiziertes Bild.</th>
-                <th>Bildbeispiel aus der vorhergesehenen Klasse.</th>
-                <th>Agent ist sich zu folgendem Prozentsatz sicher das das Bild richtig klassifiziert worden ist.</th>
-            </tr>
+        <tr>
+            <th>Klassifiziertes Bild.</th>
+            <th>Bildbeispiel aus der vorhergesehenen Klasse.</th>
+            <th>Agent ist sich zu folgendem Prozentsatz sicher das das Bild richtig klassifiziert worden ist.</th>
+        </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>
-                    <img src="{% static img_classified %}" width="100" height="100">
-                </td>
-                <td>
-                    <img src="{% static img_class_predicted %}" width="100" height="100">
-                </td>
-                <td>
-                    {{  percentage }}%
-                </td>
-            </tr>
+        <tr>
+            <td>
+                <img src="{% static img_classified %}" width="100" height="100">
+                <br>
+                {{image_label}}
+            </td>
+            <td>
+                <img src="{% static img_class_predicted %}" width="100" height="100">
+                <br>
+                {{guess_label}}
+            </td>
+            <td>
+                {{percentage}}%
+            </td>
+        </tr>
         </tbody>
     </table>
     {% endif %}
