@@ -8,3 +8,8 @@ class ImageDAO:
 
     def get_image_names(self):
        return [image.name for image in UserImage.objects.all()]
+
+    def delete_image_if_exist(self, name):
+        image = self.get_image_with_name(name)
+        if image:
+            image.delete()
