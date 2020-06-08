@@ -1,7 +1,11 @@
 <form action="{% url 'main:random_agent' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
+        {% load static %}
+
     <h3> Classifiy Random Image</h3>
     <div class="fieldWrapper">
+        Der Random Agent wählt ein zufälliges Bild aus den Testbeispielen und versucht dieses zu "Klassifizieren" (er wählt eine zufällige Klasse aus).
+        Anschließend wird berechnet wie hoch die Wahrscheinlichkeit ist, dass dieser richtig liegt
         <label>Random Seed:</label>
         <br>
         <input type="number" name="randomSeed" placeholder="default = 1">
@@ -12,13 +16,27 @@
 
 <div>
    {% if image_label and guess_label and percentage %}
-    <br>
-    <span>Result</span>
-    <br>
-    <span>Bild welches Klassifiziert wurde hat das Label: {{  image_label }}  </span>
-    <br>
-    <span>Label welches der Agent behauptet hat das Bild: {{  guess_label }}  </span>
-    <br>
-    <span>Der Agent ist sich zu: {{  percentage }}% sicher, dass das Bild richtig Klassifiziert wurde  </span>
-   {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <th>Klassifiziertes Bild</th>
+                <th>Bildbeispiel aus der vorhergesehenen Klasse</th>
+                <th>Agent ist sich zu folgendem Prozentsatz sicher das das Bild Richtig Klassifiziert worden ist</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <img src="{% static img_classified %}" width="100" height="100">
+                </td>
+                <td>
+                    <img src="{% static img_class_predicted %}" width="100" height="100">
+                </td>
+                <td>
+                    {{  percentage }}%
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    {% endif %}
 </div>

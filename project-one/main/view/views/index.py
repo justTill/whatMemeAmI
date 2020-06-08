@@ -66,12 +66,15 @@ def random_agent(request):
     random_seed = request.POST.get('randomSeed')
     seed = random_seed if random_seed else 1
     context = get_context()
+    image = imageLogic.get_image_with_name("Dominik")
     try:
         results = a.random_agent(seed)
         context.update({
             "image_label": results[0],
             "guess_label": results[1],
-            "percentage": results[2]
+            "percentage": results[2],
+            'img_classified': "images/" + results[0] + ".jpg",
+            'img_class_predicted': "images/" + results[1] + ".jpg"
         })
     except ValueError as error:
         error_message = error.__str__()

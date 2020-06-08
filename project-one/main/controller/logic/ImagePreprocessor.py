@@ -53,11 +53,11 @@ class ImagePreprocessor:
             # extract the class label from the image path and update the
             # labels list
             label = imagePath.split(os.path.sep)[-2]
-            if label == "badLuckBrian":
+            if label == "BadLuckBrian":
                 label = 1
-            elif label == "hideThePainHarold":
+            elif label == "HideThePainHarold":
                 label = 2
-            elif label == "oneDoesNotSimply":
+            elif label == "OneDoesNotSimply":
                 label = 3
             else:
                 label = 0

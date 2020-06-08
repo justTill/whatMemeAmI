@@ -65,13 +65,13 @@ class Agents:
 
     def get_label_name(self, label_number):
         if label_number == 1:
-            return "badLuckBrian"
+            return "BadLuckBrian"
         elif label_number == 2:
-            return "hideThePainHarold"
+            return "HideThePainHarold"
         elif label_number == 3:
-            return "oneDoesNotSimply"
+            return "OneDoesNotSimply"
         else:
-            return "notAMeme"
+            return "NotAMeme"
 
     def get_percentage_of_label(self, labels, guessed_label):
         number_of_labels = {}
