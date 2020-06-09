@@ -12,6 +12,6 @@ echo "[migrate new database scheme]"
 docker-compose -f whatMemeAmI.yml exec memeapp python manage.py migrate --noinput
 
 echo "[collection all staticfiles so the website looks beautiful]"
-docker-compose -f whatMemeAmI.yml exec memeapp python manage.py migrate --noinput
+docker-compose -f whatMemeAmI.yml exec memeapp python manage.py collectstatic --noinput
 
 exec "$@"
