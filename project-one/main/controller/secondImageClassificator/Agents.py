@@ -23,7 +23,7 @@ class Agents:
         inputShape = (height, width, depth)
 
         # We are adding 20 convolution filter which are 5x5 and "slide" over the image and sum up the 25 values too one
-        # The convolution filter finds feature points in our image
+        # The convolution filter finds feature points in our image Conv2D(Images, Matrix)
         agent.add(Conv2D(20, (5, 5), padding="same",
                          input_shape=inputShape))
         # iterate through the image with an 2x2 pixel pattern and get the highest pixel value
@@ -38,11 +38,11 @@ class Agents:
         # now convert the MaxPooling2D representation to a single vector(Flatten)
         agent.add(Flatten())
         # apply connections (fully connected layers)
-        agent.add(Dense(500))
+        agent.add(Dense(512))
         # another relu activation
         agent.add(Activation("relu"))
 
-        # connect the output values with all existing classes
+        # connect the output values with all existing classes -> so we can calculate the probability for each class
         agent.add(Dense(classes))
         # classifier: will give us the probability for each class
         agent.add(Activation("softmax"))
