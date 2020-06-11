@@ -23,6 +23,7 @@ class Agents:
         inputShape = (height, width, depth)
 
         # We are adding 20 convolution filter which are 5x5 and "slide" over the image and sum up the 25 values too one
+        # The convolution filter finds feature points in our image
         agent.add(Conv2D(20, (5, 5), padding="same",
                          input_shape=inputShape))
         # iterate through the image with an 2x2 pixel pattern and get the highest pixel value
@@ -34,9 +35,9 @@ class Agents:
         agent.add(Activation("relu"))
         agent.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
 
-        # now convert the MaxPooling2D to a single vector(Flatten)
+        # now convert the MaxPooling2D representation to a single vector(Flatten)
         agent.add(Flatten())
-        # apply fully connected layers
+        # apply connections (fully connected layers)
         agent.add(Dense(500))
         # another relu activation
         agent.add(Activation("relu"))
