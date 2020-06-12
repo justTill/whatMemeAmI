@@ -59,9 +59,6 @@ def classify_image(request):
     return render(request, 'templates/index.html', context)
 
 
-
-
-
 def delete_images(request):
     image_names = request.POST.getlist("deleteImageBox")
     imageLogic.delete_images(image_names)
