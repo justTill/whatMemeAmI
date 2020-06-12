@@ -1,11 +1,15 @@
 {% extends './base_layout.html' %}
 {% block content %}
-    <h2>Main Page</h2>
-
-    {% include 'templates/random_agent.html' %}
-    <br>
-    <h2>Sections below are for later in the Project</h2>
-    {% include 'templates/uploadImageForm.html' %}
-    {% include 'templates/classifyImage.html' %}
+    <h2>Main Menu</h2>
+<p> Do you  want to go left or right?</p>
+{% load static %}
+    <div id="left">
+        <a href="/submission" ><img src="{% static 'images/left.png' %}" class="responsive"> </a>
+        <p><a href="/submission"><span id="ra">LEFT:</span></a><br>You will maybe find some <span id="ra">Random Agent</span>. <br>It might be some sort of content important for grading...<br>But who am I to judge that?</p>
+    </div>
+    <div id="right">
+        <a href="/future"><img src="{% static 'images/right.png' %}" class="responsive"></a>
+        <p><a href="/future"><span id="ra">RIGHT:</span></a><br>I heard something about future functions hiding on this side...<br>You will either find a pot of gold<br>or buttons not working and a form to upload pictures.</p>
+    </div>
 
 {% endblock %}
