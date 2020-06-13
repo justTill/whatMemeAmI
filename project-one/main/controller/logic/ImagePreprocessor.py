@@ -53,12 +53,66 @@ class ImagePreprocessor:
             # extract the class label from the image path and update the
             # labels list
             label = imagePath.split(os.path.sep)[-2]
-            if label == "BadLuckBrian":
+            if label == "AlrightThenKeepYourSecrets":
                 label = 1
-            elif label == "HideThePainHarold":
+            elif label == "AncientAliens":
                 label = 2
-            elif label == "OneDoesNotSimply":
+            elif label == "BadLuckBrian":
                 label = 3
+            elif label == "BitchPlease":
+                label = 4
+            elif label == "BrentRambo":
+                label = 5
+            elif label == "CashMeOutside":
+                label = 6
+            elif label == "ChubbyBubblesGirl":
+                label = 7
+            elif label == "CondescendingWonka":
+                label = 8
+            elif label == "ConfusedBlackGirl":
+                label = 9
+            elif label == "ConfusedMathLady":
+                label = 10
+            elif label == "ConfusedTravolta":
+                label = 11
+            elif label == "ConspiracyKeanu":
+                label = 12
+            elif label == "DistractedBoyfriend":
+                label = 13
+            elif label == "FreeRealEstate":
+                label = 14
+            elif label == "GoodGuyGreg":
+                label = 15
+            elif label == "HideThePainHarold":
+                label = 16
+            elif label == "IsThisAPigeon":
+                label = 17
+            elif label == "LazyCollegeSenior":
+                label = 18
+            elif label == "MatrixMorpheus":
+                label = 19
+            elif label == "MeAndTheBoys":
+                label = 20
+            elif label == "OneDoesNotSimply":
+                label = 21
+            elif label == "OverlyAttachedGirlfriend":
+                label = 22
+            elif label == "Picard":
+                label = 23
+            elif label == "SaltBae":
+                label = 24
+            elif label == "SideEyeingChloe":
+                label = 25
+            elif label == "Stonks":
+                label = 26
+            elif label == "ThatEscalatedQuickly":
+                label = 27
+            elif label == "Trololo":
+                label = 28
+            elif label == "WomanYellingAtCat":
+                label = 29
+            elif label == "YouKnowIHadToDoItToEm":
+                label = 30
             else:
                 label = 0
             labels.append(label)
