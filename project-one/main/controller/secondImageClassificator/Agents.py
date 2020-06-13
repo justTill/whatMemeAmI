@@ -13,7 +13,7 @@ class Agents:
     """
     width = The width of our input images
     height = The height of the input images
-    depth = The number of channels in our input images ( 3 for RGB)
+    depth = The number of channels in our input images (3 for RGB)
     classes = The total number of classes we want to recognize
     """
 
@@ -24,8 +24,7 @@ class Agents:
 
         # We are adding 20 convolution filter which are 5x5 and "slide" over the image and sum up the 25 values too one
         # The convolution filter finds feature points in our image
-        agent.add(Conv2D(20, (5, 5), padding="same",
-                         input_shape=inputShape))
+        agent.add(Conv2D(20, (5, 5), padding="same", input_shape=inputShape))
 
         agent.add(Activation("relu"))
         # iterate through the image with an 2x2 pixel pattern and get the highest pixel value
