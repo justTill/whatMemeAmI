@@ -21,14 +21,11 @@ class AgentTrainer:
 
     def split_data_with_labels_into_test_and_training_set(self, data, labels):
         # Split data 75% training 25% testing
-        # trainX : training data
-        # testX :  test data
-        # trainY : training labels
-        # testY : test labels
-        (trainX, testX, trainY, testY) = train_test_split(data,
-                                                          labels, test_size=0.25, random_state=42)
+        (training_data, test_data, training_labels, test_labels) = train_test_split(data,
+                                                                                    labels, test_size=0.25,
+                                                                                    random_state=42)
         # convert the labels from integers to vectors
-        trainY = to_categorical(trainY, num_classes=4)
-        testY = to_categorical(testY, num_classes=4)
+        training_labels = to_categorical(training_labels, num_classes=4)
+        test_labels = to_categorical(test_labels, num_classes=4)
 
-        return trainX, testX, trainY, testY
+        return training_data, test_data, training_labels, test_labels
