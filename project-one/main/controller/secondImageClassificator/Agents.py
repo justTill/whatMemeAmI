@@ -55,7 +55,7 @@ class Agents:
 
         random_image_number = random.randrange(0, labels.size, 1)
         image_label = labels[random_image_number]
-        random_label = random.randrange(0, 4, 1)
+        random_label = random.randrange(0, 30, 1)
 
         image_label_name = self.get_label_name(image_label)
         guessed_label = self.get_label_name(random_label)
@@ -65,11 +65,65 @@ class Agents:
 
     def get_label_name(self, label_number):
         if label_number == 1:
-            return "BadLuckBrian"
+            return "AlrightThenKeepYourSecrets"
         elif label_number == 2:
-            return "HideThePainHarold"
+            return "AncientAliens"
         elif label_number == 3:
+            return "BadLuckBrian"
+        elif label_number == 4:
+            return "BitchPlease"
+        elif label_number == 5:
+            return "BrentRambo"
+        elif label_number == 6:
+            return "CashMeOutside"
+        elif label_number == 7:
+            return "ChubbyBubblesGirl"
+        elif label_number == 8:
+            return "CondescendingWonka"
+        elif label_number == 9:
+            return "ConfusedBlackGirl"
+        elif label_number == 10:
+            return "ConfusedMathLady"
+        elif label_number == 11:
+            return "ConfusedTravolta"
+        elif label_number == 12:
+            return "ConspiracyKeanu"
+        elif label_number == 13:
+            return "DistractedBoyfriend"
+        elif label_number == 14:
+            return "FreeRealEstate"
+        elif label_number == 15:
+            return "GoodGuyGreg"
+        elif label_number == 16:
+            return "HideThePainHarold"
+        elif label_number == 17:
+            return "IsThisAPigeon"
+        elif label_number == 18:
+            return "LazyCollegeSenior"
+        elif label_number == 19:
+            return "MatrixMorpheus"
+        elif label_number == 20:
+            return "MeAndTheBoys"
+        elif label_number == 21:
             return "OneDoesNotSimply"
+        elif label_number == 22:
+            return "OverlyAttachedGirlfriend"
+        elif label_number == 23:
+            return "Picard"
+        elif label_number == 24:
+            return "SaltBae"
+        elif label_number == 25:
+            return "SideEyeingChloe"
+        elif label_number == 26:
+            return "Stonks"
+        elif label_number == 27:
+            return "ThatEscalatedQuickly"
+        elif label_number == 28:
+            return "Trololo"
+        elif label_number == 29:
+            return "WomanYellingAtCat"
+        elif label_number == 30:
+            return "YouKnowIHadToDoItToEm"
         else:
             return "NotAMeme"
 
