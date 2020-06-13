@@ -11,10 +11,12 @@ imageLogic = ImageLogic()
 p = ImagePreprocessor()
 a = Agents()
 
+
 def future(request):
     template = loader.get_template('./templates/future.html')
     context = get_context()
     return HttpResponse(template.render(context, request))
+
 
 def save_new_user_image(request):
     context = {}
@@ -27,6 +29,7 @@ def save_new_user_image(request):
         else:
             context['upload_image_form'] = form
     return render(request, 'templates/index.html', context)
+
 
 def classify_image(request):
     image_name = request.POST.getlist('imageName')
