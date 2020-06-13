@@ -75,10 +75,6 @@ class Agents:
 
         return image_label_name, guessed_label, percentage
 
-    """
-    get the label name for the associated label number
-    """
-
     def get_label_name(self, label_number):
         if label_number == 1:
             return "AlrightThenKeepYourSecrets"
