@@ -23,11 +23,12 @@ class Agents:
         inputShape = (height, width, depth)
 
         # We are adding 20 convolution filter which are 5x5 and "slide" over the image and sum up the 25 values too one
-        # The convolution filter finds feature points in our image Conv2D(Images, Matrix)
+        # The convolution filter finds feature points in our image
         agent.add(Conv2D(20, (5, 5), padding="same",
                          input_shape=inputShape))
-        # iterate through the image with an 2x2 pixel pattern and get the highest pixel value
+
         agent.add(Activation("relu"))
+        # iterate through the image with an 2x2 pixel pattern and get the highest pixel value
         agent.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
 
         # same procedure, but with 50 convolution filter
@@ -50,19 +51,34 @@ class Agents:
         # return the constructed network architecture
         return agent
 
+    """
+    radome agent nimmst ein zufäliges Bild aus den minimierten Trainingsdaten und ein zufäälliges Lable 
+    und berechnet die Wahrscheinlichkeit ob er mit dieser Wahl recht hat oder nicht
+    
+    random_seed = eine Varibale um ein Ergebnis wiederholen zu können
+    """
+
     def random_agent(self, random_seed):
         ip = ImagePreprocessor()
+        # get preprocessed training data and training labels
         data, labels = ip.preprocessing_training_dataset(random_seed)
 
+        # get a random label from our trainings labels
         random_image_number = random.randrange(0, labels.size, 1)
         image_label = labels[random_image_number]
-        random_label = random.randrange(0, 30, 1)
 
+        # get label name
         image_label_name = self.get_label_name(image_label)
-        guessed_label = self.get_label_name(random_label)
+        # get random label name (agents guess)
+        guessed_label = self.get_label_name(random.randrange(0, 30, 1))
+        # calculate the percentage of the agent guessing right
         percentage = self.get_percentage_of_label(labels, guessed_label)
 
         return image_label_name, guessed_label, percentage
+
+    """
+    get the label name for the associated label number
+    """
 
     def get_label_name(self, label_number):
         if label_number == 1:
