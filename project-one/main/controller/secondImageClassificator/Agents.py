@@ -51,10 +51,10 @@ class Agents:
         return agent
 
     """
-    radome agent nimmst ein zufäliges Bild aus den minimierten Trainingsdaten und ein zufäälliges Lable 
-    und berechnet die Wahrscheinlichkeit ob er mit dieser Wahl recht hat oder nicht
-    
-    random_seed = eine Varibale um ein Ergebnis wiederholen zu können
+    radom agents takes a random image out of the (not all images that are used later for training are present) trainingsdata,
+    a random label and calculate the probability of the agent being right
+     
+    random_seed = a number, to repeat a specific action with the same outcome as before
     """
 
     def random_agent(self, random_seed):
