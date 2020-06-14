@@ -1,8 +1,9 @@
 #!/bin/bash
-secret_key = dhbj32g8f2uzwbhjg7z
-database_name = whatMemeAmI
-sql_user = whatMeme
-sql_password = whatMemeAmI
+# Change these
+secret_key="dhbj32g8f2uzwbhjg7z"
+database_name="whatMemeAmI"
+sql_user="whatMeme"
+sql_password="whatMemeAmI"
 
 echo "[bringing down old container]"
 docker-compose -f whatMemeAmI.yml down

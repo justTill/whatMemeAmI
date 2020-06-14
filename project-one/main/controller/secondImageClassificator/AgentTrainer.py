@@ -8,7 +8,7 @@ EPOCHS = 25
 # Learningrate -> how strong are the result weighted
 INIT_LR = 1e-3
 
-# How many Images a taken for each learning rep
+# How many Images a taken for each learning repetitions
 BS = 32
 
 # image generator for data augmentation -> for additional test images
