@@ -2,10 +2,10 @@ from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.optimizers import Adam
-from tensorflow.keras import losses
 from .Agents import Agents
-import os
 from main.controller.logic import ImagePreprocessor
+import tensorflow as tf
+
 
 # Number of learning repetitions
 EPOCHS = 25
@@ -40,14 +40,14 @@ class AgentTrainer:
         print("[INFO] compiling model...")
         agent_builder = Agents()
         # build our neural network together
-        agent = agent_builder.build_neural_network_agent(width=64, height=64, depth=1, classes=31)
+        agent = agent_builder.build_neural_network_agent(width=64, height=64, depth=3, classes=31)
         # we use the Adam optimizer
         # lr = learningrate = INIT_LR => 1e-4
         # decay = learningrate slowly goes down the further we train the agent
         optimizer = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
         # compile our model: with the optimize, loss function and we want accurate metrics
         agent.compile(optimizer=optimizer,
-                      loss=losses.SparseCategoricalCrossentropy(),
+                      loss="categorical_crossentropy",
                       metrics=["accuracy"])
 
         return agent
@@ -66,6 +66,9 @@ class AgentTrainer:
         # steps_per_epoch = number of training reps
         # epochs = we do this 25 times
         # verbose = visualisation of training progress for each epoch
+
+        training_labels = tf.convert_to_tensor(training_labels)
+        test_labels = tf.convert_to_tensor(test_labels)
         trained_agent = agent.fit(x=aug.flow(training_data, training_labels, batch_size=BS),
                                   validation_data=(test_data, test_labels), steps_per_epoch=len(training_data) // BS,
                                   epochs=EPOCHS, verbose=1)
