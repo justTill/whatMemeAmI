@@ -69,11 +69,11 @@ class AgentTrainer:
 
         training_labels = tf.convert_to_tensor(training_labels)
         test_labels = tf.convert_to_tensor(test_labels)
-        trained_agent = agent.fit(x=aug.flow(training_data, training_labels, batch_size=BS),
+        history_of_the_training = agent.fit(x=aug.flow(training_data, training_labels, batch_size=BS),
                                   validation_data=(test_data, test_labels), steps_per_epoch=len(training_data) // BS,
                                   epochs=EPOCHS, verbose=1)
 
-        return trained_agent
+        return history_of_the_training
 
-    def save_trained_agent_to_disk(self, trained_agent):
-        trained_agent.save("../../trainedAgents/secondAgent", save_format="h5")
+    def save_history_of_training_to_disk(self, history_of_the_training):
+        history_of_the_training.save("../../trainedAgents/secondAgent", save_format="h5")
