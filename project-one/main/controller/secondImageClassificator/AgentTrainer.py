@@ -1,10 +1,12 @@
+import pandas as pd
+import tensorflow as tf
+from .Agents import Agents
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.optimizers import Adam
-from .Agents import Agents
 from main.controller.logic import ImagePreprocessor
-import tensorflow as tf
+
 
 
 # Number of learning repetitions
@@ -73,7 +75,18 @@ class AgentTrainer:
                                   validation_data=(test_data, test_labels), steps_per_epoch=len(training_data) // BS,
                                   epochs=EPOCHS, verbose=1)
 
+        self.save_agent_to_disk(agent)
+
         return history_of_the_training
 
     def save_history_of_training_to_disk(self, history_of_the_training):
-        history_of_the_training.save("../../trainedAgents/secondAgent", save_format="h5")
+        # convert the history.history dict to a pandas DataFrame:
+        hist_df = pd.DataFrame(history_of_the_training.history)
+
+        # save to json:
+        hist_json_file = 'main/trainedAgents/secondAgent/history.json'
+        with open(hist_json_file, mode='w') as f:
+            hist_df.to_json(f)
+
+    def save_agent_to_disk(self, agent):
+        agent.save("main/trainedAgents/secondAgent/test.h5", save_format="h5")

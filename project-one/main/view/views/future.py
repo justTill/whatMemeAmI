@@ -6,10 +6,12 @@ from main.controller.forms import UploadImageForm
 from main.controller.logic import ImageLogic
 from main.controller.logic import ImagePreprocessor
 from main.controller.secondImageClassificator import Agents
+from main.controller.secondImageClassificator import AgentTrainer
 
 imageLogic = ImageLogic()
 p = ImagePreprocessor()
 a = Agents()
+aT = AgentTrainer()
 
 
 def future(request):
@@ -48,7 +50,9 @@ def classify_image(request):
                 }))
         elif button == 'agent_two':
             try:
-                print("try")
+                agent = aT.compile_neural_network()
+                trained_agent = aT.train_agent(agent, seed)
+                aT.save_history_of_training_to_disk(trained_agent)
             except ValueError as error:
                 error_message = error.__str__()
                 context.update(({
@@ -59,7 +63,7 @@ def classify_image(request):
             "agent_error": "Pleas enter an Image name"
         }))
 
-    return render(request, 'templates/index.html', context)
+    return render(request, 'templates/future.html', context)
 
 
 def delete_images(request):

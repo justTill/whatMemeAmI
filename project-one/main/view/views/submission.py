@@ -10,10 +10,12 @@ imageLogic = ImageLogic()
 p = ImagePreprocessor()
 a = Agents()
 
+
 def submission(request):
     template = loader.get_template('./templates/submission.html')
     context = get_context()
     return HttpResponse(template.render(context, request))
+
 
 def random_agent(request):
     random_seed = request.POST.get('randomSeed')
@@ -35,6 +37,7 @@ def random_agent(request):
             "agent_error": error_message
         }))
     return render(request, 'templates/submission.html', context)
+
 
 def get_context():
     image_names = imageLogic.get_all_image_names()
