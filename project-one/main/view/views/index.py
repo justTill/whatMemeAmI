@@ -11,7 +11,9 @@ aT = AgentTrainer()
 def index(request):
     template = loader.get_template('./templates/index.html')
     context = get_context()
-    aT.save_trained_agent_to_disk("hajsdf")
+    agent = aT.compile_neural_network()
+    trained_agent = aT.train_agent(agent, 42)
+    aT.save_trained_agent_to_disk(trained_agent)
     return HttpResponse(template.render(context, request))
 
 
