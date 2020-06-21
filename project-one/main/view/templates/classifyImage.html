@@ -17,9 +17,13 @@
     {% csrf_token %}
     <h3> Classifiy Image</h3>
     <div class="fieldWrapper">
-        <label>Bild Name:</label>
+        <label>Select Image to be classified</label>
         <br>
-        <input type="text" name="imageName">
+        <select name="imageNames" size="1">
+            {% for name in image_names %}
+                <option value={{ name }}>{{ name }}</option>
+            {% endfor %}
+        </select>
         <br>
         <label>Random Seed:</label>
         <br>
@@ -28,6 +32,14 @@
     <br>
     <button type="submit" name="button" value="agent_one">Agent 1 Klassifizierung</button>
     <button type="submit" name="button" value="agent_two">Agent 2 Klassifizierung</button>
+</form>
+
+<form action="{% url 'main:train_agent_two' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Random Seed:</label>
+    <br>
+    <input type="number" name="randomSeedTrainAgentTwo" placeholder="default = 1">
+    <button type="submit" name="button">Train agent two</button>
 </form>
 
 <div>
