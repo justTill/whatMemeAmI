@@ -27,10 +27,10 @@ def save_new_user_image(request):
         if form.is_valid():
             form.clean()
             form.save()
-            return HttpResponseRedirect(reverse('main:index'))
+            return HttpResponseRedirect(reverse('main:future'))
         else:
             context['upload_image_form'] = form
-    return render(request, 'templates/index.html', context)
+    return render(request, 'templates/future.html', context)
 
 
 def classify_image(request):
@@ -69,7 +69,7 @@ def classify_image(request):
 def delete_images(request):
     image_names = request.POST.getlist("deleteImageBox")
     imageLogic.delete_images(image_names)
-    return HttpResponseRedirect(reverse('main:index'))
+    return HttpResponseRedirect(reverse('main:future'))
 
 
 def get_context():
