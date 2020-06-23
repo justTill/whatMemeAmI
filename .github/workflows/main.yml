@@ -17,10 +17,10 @@ jobs:
          # pip3 install -r ./project-one/requirements.txt
 
       - name: create databse dir
-        run: echo "create databse dir "#cd ./project-one && mkdir ./main/database && python3 manage.py migrate
+        run: echo "create databse dir" #cd ./project-one && mkdir ./main/database && python3 manage.py migrate
 
       - name: Run test
-        run: echo "should run test"#cd ./project-one/ && python3 manage.py test
+        run: echo "should run test" #cd ./project-one/ && python3 manage.py test
 
   buildAndPush:
     needs: healthcheck
