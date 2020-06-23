@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.template import loader
-from main.controller.forms import UploadImageForm
+from django.urls import reverse
 from main.controller.logic import ImageLogic
 from main.controller.logic import ImagePreprocessor
 from main.controller.secondImageClassificator import Agents

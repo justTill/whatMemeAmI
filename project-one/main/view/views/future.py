@@ -48,12 +48,7 @@ def classify_image(request):
                 "predicted_class": label,
                 "percentage": percentage * 100
             }))
-    else:
-        context.update(({
-            "agent_error": "Pleas enter an Image name"
-        }))
-
-    return render(request, 'templates/future.html', context)
+    return HttpResponseRedirect(reverse('main:future'))
 
 
 def get_context():

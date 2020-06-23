@@ -15,11 +15,15 @@
     <div class="fieldWrapper">
         <label>Select Image to be classified</label>
         <br>
-        <select name="imageNames" size="1">
-            {% for name in image_names %}
-                <option value={{ name }}>{{ name }}</option>
-            {% endfor %}
-        </select>
+        {% if image_names|length != 0 %}
+            <select name="imageNames" size="1">
+                {% for name in image_names %}
+                    <option value={{ name }}>{{ name }}</option>
+                {% endfor %}
+            </select>
+        {% else %}
+            Bitte erst ein Bild hochladen
+        {%endif%}
     </div>
     <br>
     <button type="submit" name="button" value="agent_one">Agent 1 Klassifizierung</button>
