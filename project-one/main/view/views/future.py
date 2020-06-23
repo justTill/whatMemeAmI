@@ -66,6 +66,7 @@ def classify_image(request):
 
 def train_agent_two(request):
     random_seed = request.POST.get('randomSeedTrainAgentTwo')
+    random_seed = random_seed if random_seed else 1
     agent = aT.compile_neural_network()
     trained_agent = aT.train_agent(agent, random_seed)
     aT.save_history_of_training_to_disk(trained_agent)
