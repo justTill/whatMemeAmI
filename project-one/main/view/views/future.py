@@ -68,7 +68,7 @@ def train_agent_two(request):
     random_seed = request.POST.get('randomSeedTrainAgentTwo')
     agent = aT.compile_neural_network()
     trained_agent = aT.train_agent(agent, random_seed)
-    aT.save_history_of_training_to_disk(trained_agent)
+    aT.save_history_graph_to_disk(trained_agent)
 
     return HttpResponseRedirect(reverse('main:future'))
 
