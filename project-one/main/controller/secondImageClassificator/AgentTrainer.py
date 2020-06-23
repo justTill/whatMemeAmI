@@ -1,5 +1,6 @@
-import pandas as pd
 import tensorflow as tf
+import matplotlib.pyplot as plt
+import numpy as np
 from .Agents import Agents
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
@@ -79,14 +80,20 @@ class AgentTrainer:
 
         return history_of_the_training
 
-    def save_history_of_training_to_disk(self, history_of_the_training):
-        # convert the history.history dict to a pandas DataFrame:
-        hist_df = pd.DataFrame(history_of_the_training.history)
+    def save_history_graph_to_disk(self, history):
+        # specify the diagram appearance
+        plt.style.use("ggplot")
+        plt.figure()
+        plt.plot(np.arange(0, EPOCHS), history.history["loss"], label="train_loss")
+        plt.plot(np.arange(0, EPOCHS), history.history["val_loss"], label="val_loss")
+        plt.plot(np.arange(0, EPOCHS), history.history["accuracy"], label="train_acc")
+        plt.plot(np.arange(0, EPOCHS), history.history["val_accuracy"], label="val_acc")
 
-        # save to json:
-        hist_json_file = 'main/trainedAgents/secondAgent/history.json'
-        with open(hist_json_file, mode='w') as f:
-            hist_df.to_json(f)
+        plt.title("Training Loss and Accuracy on Meme Classification")
+        plt.xlabel("Epoch")
+        plt.ylabel("Loss/Accuracy")
+        plt.legend(loc="lower left")
+        plt.savefig("main/trainedAgents/secondAgent/plot.png")
 
     def save_agent_to_disk(self, agent):
         agent.save("main/trainedAgents/secondAgent/test.h5", save_format="h5")
