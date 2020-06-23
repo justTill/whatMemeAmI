@@ -96,4 +96,4 @@ class AgentTrainer:
         plt.savefig("main/trainedAgents/secondAgent/plot.png")
 
     def save_agent_to_disk(self, agent):
-        agent.save("main/trainedAgents/secondAgent/test.h5", save_format="h5")
+        agent.save("main/trainedAgents/secondAgent/agentTwo.h5", save_format="h5")

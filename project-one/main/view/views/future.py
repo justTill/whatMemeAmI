@@ -7,11 +7,13 @@ from main.controller.logic import ImageLogic
 from main.controller.logic import ImagePreprocessor
 from main.controller.secondImageClassificator import Agents
 from main.controller.secondImageClassificator import AgentTrainer
+from main.controller.secondImageClassificator import Classificator
 
 imageLogic = ImageLogic()
 p = ImagePreprocessor()
 a = Agents()
 aT = AgentTrainer()
+classificator = Classificator()
 
 
 def future(request):
@@ -49,13 +51,14 @@ def classify_image(request):
                     "agent_error": error_message
                 }))
         elif button == 'agent_two':
-            try:
-                print("try")
-            except ValueError as error:
-                error_message = error.__str__()
-                context.update(({
-                    "agent_error": error_message
-                }))
+            #try:
+                user_class = classificator.classifiy_image_from_user(image_name, seed)
+
+           # except ValueError as error:
+           #     error_message = error.__str__()
+           #     context.update(({
+           #         "agent_error": error_message
+           #     }))
     else:
         context.update(({
             "agent_error": "Pleas enter an Image name"
