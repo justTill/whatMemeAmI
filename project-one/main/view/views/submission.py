@@ -39,9 +39,6 @@ def random_agent(request):
 
 
 def get_context():
-    image_names = imageLogic.get_all_image_names()
     context = {
-        'image_names': image_names,
-        'upload_image_form': UploadImageForm,
     }
     return context

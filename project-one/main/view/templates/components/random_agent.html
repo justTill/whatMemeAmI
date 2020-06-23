@@ -1,0 +1,35 @@
+<div>
+    <form action="{% url 'main:random_agent' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% load static %}
+
+        <h3> Test Random Agent</h3>
+        <div class="fieldWrapper">
+           <p> The Random Agent takes one random image from the testing-database and "classifies" it by taking a random category <br>and claiming the image belongs in this category.<br>The percentage number helps the Random Agent acting as if he knows what he does.</p>
+            <div class="tooltip">Random Seed
+                <span class="tooltiptext">The random seed lets you recreate a classification.<br>If you "Classify" with seed "1" you will always see the same result for seed "1".</span></div>:
+            <input type="number" name="randomSeed" placeholder="1">
+        </div>
+        <br>
+        <button type="submit" name="button" value="random_agent">"Classify"</button>
+    </form>
+</div>
+<div>
+    <p>
+        <div>
+            {% if image_label and guess_label and percentage %}
+            The Agent is {{percentage}}% certain.
+            <div id="left">
+                <p>Your "uploaded" picture.</p>
+                <img src="{% static img_classified %}" class="responsive">
+                 <p class="subtitle">{{image_label}}</p>
+            </div>
+            <div id="right">
+                <p>The class the Agent assigned your picture to.</p>
+                <img src="{% static img_class_predicted %}" class="responsive">
+                <p class="subtitle">{{guess_label}}</p>
+            </div>
+            {% endif %}
+        </div>
+    </p>
+</div>

@@ -1,0 +1,27 @@
+<div>
+    {% if predicted_class and percentage %}
+    <br>
+    <span>Dein Bild gehört zur folgenden Meme Kategorie</span>
+    <br>
+    <span>{{ predicted_class }}</span>
+    <br>
+    <span>Dabei sind wir uns zu {{ percentage }}% sicher</span>
+    {% endif %}
+</div>
+
+<form action="{% url 'main:classify_image' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h3> Classifiy Image</h3>
+    <div class="fieldWrapper">
+        <label>Select Image to be classified</label>
+        <br>
+        <select name="imageNames" size="1">
+            {% for name in image_names %}
+                <option value={{ name }}>{{ name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <br>
+    <button type="submit" name="button" value="agent_one">Agent 1 Klassifizierung</button>
+    <button type="submit" name="button" value="agent_two">Agent 2 Klassifizierung</button>
+</form>

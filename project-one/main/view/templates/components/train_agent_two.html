@@ -1,0 +1,8 @@
+<h3>Train Agent Two</h3>
+<form action="{% url 'main:train_agent_two' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Random Seed:</label>
+    <br>
+    <input type="number" name="randomSeedTrainAgentTwo" placeholder="default = 1">
+    <button type="submit" name="button">Train agent two</button>
+</form>
