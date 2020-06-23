@@ -90,7 +90,7 @@ class AgentTrainer:
         plt.plot(np.arange(0, EPOCHS), history.history["val_accuracy"], label="val_acc")
 
         plt.title("Training Loss and Accuracy on Meme Classification")
-        plt.xlabel("Epoch")
+        plt.xlabel("Epoch #")
         plt.ylabel("Loss/Accuracy")
         plt.legend(loc="lower left")
         plt.savefig("main/trainedAgents/secondAgent/plot.png")
