@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Intall dependencies
-        run: echo "Install depenencies "# |
+        run: echo "Install depenencies" # |
          # pip3 install setuptools wheel
          # pip3 install -r ./project-one/requirements.txt
 
