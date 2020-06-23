@@ -21,7 +21,6 @@ def random_agent(request):
     random_seed = request.POST.get('randomSeed')
     seed = random_seed if random_seed else 1
     context = get_context()
-    image = imageLogic.get_image_with_name("Dominik")
     try:
         results = a.random_agent(seed)
         context.update({
