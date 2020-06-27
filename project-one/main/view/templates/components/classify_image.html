@@ -1,12 +1,20 @@
 <div>
+ {% load static %}
     {% if predicted_class and percentage %}
-    <br>
-    <span>Dein Bild gehört zur folgenden Meme Kategorie</span>
-    <br>
-    <span>{{ predicted_class }}</span>
-    <br>
-    <span>Dabei sind wir uns zu {{ percentage }}% sicher</span>
+        <br>
+        <span>Dein Bild <span>
+        <br>
+            <img src="{{ user_image }}">
+        <br>
+        <span>gehört zur folgenden Meme Kategorie</span>
+        <br>
+        <span>{{ predicted_class }}</span>
+        <br>
+        <img src="{% static predicted_class_image_path %}">
+        <br>
+        <span>Dabei sind wir uns zu {{ percentage }}% sicher</span>
     {% endif %}
+    <br>
 </div>
 
 <form action="{% url 'main:classify_image' %}" method="post" enctype="multipart/form-data">

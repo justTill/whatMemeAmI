@@ -11,7 +11,6 @@ class Classificator:
         model = load_model("main/trainedAgents/secondAgent/agentTwo.h5")
 
         percentage_of_classes = model.predict(user_image_data)[0]
-        print(self.get_highest_label_with_percentage(percentage_of_classes))
 
         return self.get_highest_label_with_percentage(percentage_of_classes)
 
