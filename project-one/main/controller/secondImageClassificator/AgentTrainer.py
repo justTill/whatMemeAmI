@@ -11,13 +11,13 @@ from main.controller.logic import ImagePreprocessor
 
 
 # Number of learning repetitions
-EPOCHS = 25
+EPOCHS = 35
 
 # Learningrate -> how strong are the result weighted
 INIT_LR = 1e-3
 
 # How many Images a taken for each learning repetitions
-BS = 32
+BS = 35
 
 # image generator for data augmentation -> for additional test images
 aug = ImageDataGenerator(rotation_range=30, width_shift_range=0.1,
@@ -45,7 +45,7 @@ class AgentTrainer:
         # build our neural network together
         agent = agent_builder.build_neural_network_agent(width=64, height=64, depth=3, classes=31)
         # we use the Adam optimizer
-        # lr = learningrate = INIT_LR => 1e-4
+        # lr = learningrate
         # decay = learningrate slowly goes down the further we train the agent
         optimizer = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
         # compile our model: with the optimize, loss function and we want accurate metrics
