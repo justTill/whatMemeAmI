@@ -14,7 +14,7 @@ from main.controller.logic import ImagePreprocessor
 EPOCHS = 25
 
 # Learningrate -> how strong are the result weighted
-INIT_LR = 1e-4
+INIT_LR = 1e-3
 
 # How many Images a taken for each learning repetitions
 BS = 32

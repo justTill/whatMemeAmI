@@ -48,7 +48,7 @@ def classify_image(request):
                 "predicted_class": label,
                 "percentage": percentage * 100
             }))
-    return HttpResponseRedirect(reverse('main:future'))
+    return render(request, 'templates/future.html', context)
 
 
 def get_context():
