@@ -1,0 +1,7 @@
+/project-one/main/database/db.sqlite3
+/project-one/mediafiles
+/project-one/staticfiles
+__pycache__
+/venv
+/.idea
+.idea

@@ -15,24 +15,18 @@ class ImagePreprocessor:
         image_logic = ImageLogic()
         if not image_name:
             raise ValueError('Not Image Name was given')
-        user_image = image_logic.get_image_with_name(image_name[0])
-
+        user_image = image_logic.get_image_with_name(image_name)
         if not user_image:
             raise ValueError("no User Image was found with that name: " + image_name.__str__())
 
         print("[INFO] loading User image...")
-        data = []
-
-        # save image in np.array and resize it
-        image = np.asarray(bytearray(user_image[0].image.read()))
+        image = cv2.imread("mediafiles/" + user_image[0].image.__str__())
         image = cv2.resize(image, (64, 64))
+        image = image.astype("float") / 255.0
         image = img_to_array(image)
-        data.append(image)
+        image = np.expand_dims(image, axis=0)
 
-        # scale the raw pixel intensities to the range [0, 1]
-        data = np.array(data, dtype="float") / 255.0
-
-        return data
+        return image
 
     def preprocessing_training_dataset(self, random_seed):
         print("[INFO] loading Training images...")

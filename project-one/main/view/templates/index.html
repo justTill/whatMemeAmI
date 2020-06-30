@@ -1,6 +1,7 @@
 {% extends './base_layout.html' %}
 {% block content %}
     <h2>Main Menu</h2>
+    <a href="/settings">Einstellungen</a>
 <p> Do you  want to go left or right?</p>
 {% load static %}
     <div id="left">
@@ -11,5 +12,4 @@
         <a href="/future"><img src="{% static 'images/right.png' %}" class="responsive"></a>
         <p><a href="/future"><span id="ra">RIGHT:</span></a><br>I heard something about future functions hiding on this side...<br>You will either find a pot of gold<br>or buttons not working and a form to upload pictures.</p>
     </div>
-
 {% endblock %}
