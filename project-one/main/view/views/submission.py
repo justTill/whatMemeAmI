@@ -1,10 +1,9 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
-from django.urls import reverse
+from main.controller.imageClassificator import Agents
 from main.controller.logic import ImageLogic
 from main.controller.logic import ImagePreprocessor
-from main.controller.secondImageClassificator import Agents
 
 imageLogic = ImageLogic()
 p = ImagePreprocessor()

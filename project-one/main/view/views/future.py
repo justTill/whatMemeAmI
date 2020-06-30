@@ -5,8 +5,8 @@ from django.urls import reverse
 from main.controller.forms import UploadImageForm
 from main.controller.logic import ImageLogic
 from main.controller.logic import ImagePreprocessor
-from main.controller.secondImageClassificator import Agents
-from main.controller.secondImageClassificator import Classificator
+from main.controller.imageClassificator import Agents
+from main.controller.imageClassificator import Classificator
 
 imageLogic = ImageLogic()
 p = ImagePreprocessor()
@@ -39,9 +39,18 @@ def classify_image(request):
     context = get_context()
     if image_name:
         if button == 'agent_one':
-            print("try")
+            data = classificator.classifiy_image_from_user(image_name, "main/trainedAgents/agent_RMSprop.h5")
+            user_image = imageLogic.get_image_with_name(image_name).get()
+            label = data["label"]
+            percentage = data["percentage"]
+            context.update(({
+                "predicted_class": label,
+                "percentage": percentage * 100,
+                "predicted_class_image_path": "images/" + label + ".jpg",
+                "user_image": user_image.image.url
+            }))
         elif button == 'agent_two':
-            data = classificator.classifiy_image_from_user(image_name)
+            data = classificator.classifiy_image_from_user(image_name, "main/trainedAgents/agent_Adam.h5")
             user_image = imageLogic.get_image_with_name(image_name).get()
             label = data["label"]
             percentage = data["percentage"]
