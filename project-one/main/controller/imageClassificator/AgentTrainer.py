@@ -40,6 +40,7 @@ class AgentTrainer:
     def compile_neural_network_with_adam(self):
         # initialize the model
         print("[INFO] compiling model...")
+        tf.random.set_seed(42)
         agent_builder = Agents()
         # build our neural network together
         agent = agent_builder.build_neural_network_agent(width=64, height=64, depth=3, classes=31)
