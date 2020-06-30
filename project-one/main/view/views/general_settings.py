@@ -25,7 +25,7 @@ def train_agent_one(request):
     random_seed = random_seed if random_seed else 1
     agent = aT.compile_neural_network_with_RMSprop()
     trained_agent = aT.train_agent(agent, random_seed, "main/trainedAgents/agent_RMSprop.h5")
-    aT.save_history_graph_to_disk(trained_agent, "main/trainedAgents/firstAgent_plot.png")
+    aT.save_history_graph_to_disk(trained_agent, "main/view/static/images/RMSprop_agent_plot.png")
     return HttpResponseRedirect(reverse('main:settings'))
 
 
@@ -34,7 +34,7 @@ def train_agent_two(request):
     random_seed = random_seed if random_seed else 1
     agent = aT.compile_neural_network_with_adam()
     trained_agent = aT.train_agent(agent, random_seed, "main/trainedAgents/agent_Adam.h5")
-    aT.save_history_graph_to_disk(trained_agent, "main/trainedAgents/firstAgent_plot.png")
+    aT.save_history_graph_to_disk(trained_agent, "main/view/static/images/adam_agent_plot.png")
     return HttpResponseRedirect(reverse('main:settings'))
 
 
