@@ -58,7 +58,14 @@ def process_classified_data(data, context, user_image):
         "predicted_class_image_path": "images/" + max_label + ".jpg",
         "user_image": user_image.image.url
     }))
-
+    if max_percentage <= 0.7:
+        second_label = data["second_label"]
+        second_percentage = data["second_percentage"]
+        context.update(({
+            "second_predicted_class": second_label,
+            "second_percentage": second_percentage * 100,
+            "second_predicted_class_image_path": "images/" + second_label + ".jpg",
+        }))
 
 def get_context():
     image_names = imageLogic.get_all_image_names()

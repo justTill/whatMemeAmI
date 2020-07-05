@@ -14,7 +14,15 @@
         <br>
         <span>Dein Bild stimmt zu {{ max_percentage }}% mit dem Meme Template überein</span>
     {% endif %}
-    <br>
+    {% if second_predicted_class and second_percentage %}
+        <br>
+        <span>{{ second_predicted_class }}</span>
+            <br>
+            <img src="{% static second_predicted_class_image_path %}">
+            <br>
+            <span>Dein Bild stimmt zu {{ second_percentage }}% mit dem Meme Template überein</span>
+        <br>
+    {% endif %}
 </div>
 
 <form action="{% url 'main:classify_image' %}" method="post" enctype="multipart/form-data">
