@@ -5,16 +5,20 @@ from django.urls import reverse
 from main.controller.forms import UploadImageForm
 from main.controller.logic import ImageLogic
 from main.controller.logic import ImagePreprocessor
-from main.controller.secondImageClassificator import Agents
+from main.controller.imageClassificator import Agents
+from main.controller.imageClassificator import Classificator
 
 imageLogic = ImageLogic()
 p = ImagePreprocessor()
 a = Agents()
+classificator = Classificator()
+
 
 def future(request):
     template = loader.get_template('./templates/future.html')
     context = get_context()
     return HttpResponse(template.render(context, request))
+
 
 def save_new_user_image(request):
     context = {}
@@ -23,46 +27,40 @@ def save_new_user_image(request):
         if form.is_valid():
             form.clean()
             form.save()
-            return HttpResponseRedirect(reverse('main:index'))
+            return HttpResponseRedirect(reverse('main:future'))
         else:
             context['upload_image_form'] = form
-    return render(request, 'templates/index.html', context)
+    return render(request, 'templates/future.html', context)
+
 
 def classify_image(request):
-    image_name = request.POST.getlist('imageName')
-    random_seed = request.POST.get('randomSeed')
-    seed = random_seed if random_seed else 1
+    image_name = request.POST.get('imageNames')
     button = request.POST.get('button')
     context = get_context()
     if image_name:
         if button == 'agent_one':
-            try:
-                print("try")
-            except ValueError as error:
-                error_message = error.__str__()
-                context.update(({
-                    "agent_error": error_message
-                }))
+            data = classificator.classifiy_image_from_user(image_name, "main/trainedAgents/agent_RMSprop.h5")
+            user_image = imageLogic.get_image_with_name(image_name).get()
+            max_label = data["max_label"]
+            max_percentage = data["max_percentage"]
+            context.update(({
+                "predicted_class": max_label,
+                "max_percentage": max_percentage * 100,
+                "predicted_class_image_path": "images/" + max_label + ".jpg",
+                "user_image": user_image.image.url
+            }))
         elif button == 'agent_two':
-            try:
-                print("try")
-            except ValueError as error:
-                error_message = error.__str__()
-                context.update(({
-                    "agent_error": error_message
-                }))
-    else:
-        context.update(({
-            "agent_error": "Pleas enter an Image name"
-        }))
-
-    return render(request, 'templates/index.html', context)
-
-
-def delete_images(request):
-    image_names = request.POST.getlist("deleteImageBox")
-    imageLogic.delete_images(image_names)
-    return HttpResponseRedirect(reverse('main:index'))
+            data = classificator.classifiy_image_from_user(image_name, "main/trainedAgents/agent_Adam.h5")
+            user_image = imageLogic.get_image_with_name(image_name).get()
+            max_label = data["max_label"]
+            max_percentage = data["max_percentage"]
+            context.update(({
+                "predicted_class": max_label,
+                "max_percentage": max_percentage * 100,
+                "predicted_class_image_path": "images/" + max_label + ".jpg",
+                "user_image": user_image.image.url
+            }))
+    return render(request, 'templates/future.html', context)
 
 
 def get_context():
