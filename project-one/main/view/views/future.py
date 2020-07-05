@@ -38,29 +38,26 @@ def classify_image(request):
     button = request.POST.get('button')
     context = get_context()
     if image_name:
+        user_image = imageLogic.get_image_with_name(image_name).get()
         if button == 'agent_one':
             data = classificator.classifiy_image_from_user(image_name, "main/trainedAgents/agent_RMSprop.h5")
-            user_image = imageLogic.get_image_with_name(image_name).get()
-            max_label = data["max_label"]
-            max_percentage = data["max_percentage"]
-            context.update(({
-                "predicted_class": max_label,
-                "max_percentage": max_percentage * 100,
-                "predicted_class_image_path": "images/" + max_label + ".jpg",
-                "user_image": user_image.image.url
-            }))
+            process_classified_data(data, context, user_image)
         elif button == 'agent_two':
             data = classificator.classifiy_image_from_user(image_name, "main/trainedAgents/agent_Adam.h5")
-            user_image = imageLogic.get_image_with_name(image_name).get()
-            max_label = data["max_label"]
-            max_percentage = data["max_percentage"]
-            context.update(({
-                "predicted_class": max_label,
-                "max_percentage": max_percentage * 100,
-                "predicted_class_image_path": "images/" + max_label + ".jpg",
-                "user_image": user_image.image.url
-            }))
+            process_classified_data(data, context, user_image)
+
     return render(request, 'templates/future.html', context)
+
+
+def process_classified_data(data, context, user_image):
+    max_label = data["max_label"]
+    max_percentage = data["max_percentage"]
+    context.update(({
+        "predicted_class": max_label,
+        "max_percentage": max_percentage * 100,
+        "predicted_class_image_path": "images/" + max_label + ".jpg",
+        "user_image": user_image.image.url
+    }))
 
 
 def get_context():
