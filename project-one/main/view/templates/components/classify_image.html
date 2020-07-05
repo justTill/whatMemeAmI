@@ -1,6 +1,6 @@
 <div>
  {% load static %}
-    {% if predicted_class and percentage %}
+    {% if predicted_class and max_percentage %}
         <br>
         <span>Dein Bild </span>
         <br>
@@ -12,7 +12,7 @@
         <br>
         <img src="{% static predicted_class_image_path %}">
         <br>
-        <span>Dein Bild stimmt zu {{ percentage }}% mit dem Meme Template überein</span>
+        <span>Dein Bild stimmt zu {{ max_percentage }}% mit dem Meme Template überein</span>
     {% endif %}
     <br>
 </div>
