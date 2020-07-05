@@ -38,30 +38,34 @@ def classify_image(request):
     button = request.POST.get('button')
     context = get_context()
     if image_name:
+        user_image = imageLogic.get_image_with_name(image_name).get()
         if button == 'agent_one':
             data = classificator.classifiy_image_from_user(image_name, "main/trainedAgents/agent_RMSprop.h5")
-            user_image = imageLogic.get_image_with_name(image_name).get()
-            label = data["label"]
-            percentage = data["percentage"]
-            context.update(({
-                "predicted_class": label,
-                "percentage": percentage * 100,
-                "predicted_class_image_path": "images/" + label + ".jpg",
-                "user_image": user_image.image.url
-            }))
+            process_classified_data(data, context, user_image)
         elif button == 'agent_two':
             data = classificator.classifiy_image_from_user(image_name, "main/trainedAgents/agent_Adam.h5")
-            user_image = imageLogic.get_image_with_name(image_name).get()
-            label = data["label"]
-            percentage = data["percentage"]
-            context.update(({
-                "predicted_class": label,
-                "percentage": percentage * 100,
-                "predicted_class_image_path": "images/" + label + ".jpg",
-                "user_image": user_image.image.url
-            }))
+            process_classified_data(data, context, user_image)
+
     return render(request, 'templates/future.html', context)
 
+
+def process_classified_data(data, context, user_image):
+    max_label = data["max_label"]
+    max_percentage = data["max_percentage"]
+    context.update(({
+        "predicted_class": max_label,
+        "max_percentage": max_percentage * 100,
+        "predicted_class_image_path": "images/" + max_label + ".jpg",
+        "user_image": user_image.image.url
+    }))
+    if max_percentage <= 0.7:
+        second_label = data["second_label"]
+        second_percentage = data["second_percentage"]
+        context.update(({
+            "second_predicted_class": second_label,
+            "second_percentage": second_percentage * 100,
+            "second_predicted_class_image_path": "images/" + second_label + ".jpg",
+        }))
 
 def get_context():
     image_names = imageLogic.get_all_image_names()
