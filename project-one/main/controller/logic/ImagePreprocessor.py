@@ -65,57 +65,47 @@ class ImagePreprocessor:
             return 3
         elif label_name == "BitchPlease":
             return 4
-        elif label_name == "BrentRambo":
-            return 5
         elif label_name == "CashMeOutside":
-            return 6
+            return 5
         elif label_name == "ChubbyBubblesGirl":
-            return 7
+            return 6
         elif label_name == "CondescendingWonka":
-            return 8
+            return 7
         elif label_name == "ConfusedBlackGirl":
-            return 9
+            return 8
         elif label_name == "ConfusedMathLady":
-            return 10
+            return 9
         elif label_name == "ConfusedTravolta":
-            return 11
+            return 10
         elif label_name == "ConspiracyKeanu":
-            return 12
+            return 11
         elif label_name == "DistractedBoyfriend":
-            return 13
+            return 12
         elif label_name == "FreeRealEstate":
-            return 14
+            return 13
         elif label_name == "GoodGuyGreg":
-            return 15
+            return 14
         elif label_name == "HideThePainHarold":
-            return 16
+            return 15
         elif label_name == "IsThisAPigeon":
-            return 17
+            return 16
         elif label_name == "LazyCollegeSenior":
-            return 18
+            return 17
         elif label_name == "MatrixMorpheus":
-            return 19
-        elif label_name == "MeAndTheBoys":
-            return 20
+            return 18
         elif label_name == "OneDoesNotSimply":
-            return 21
+            return 19
         elif label_name == "OverlyAttachedGirlfriend":
-            return 22
+            return 20
         elif label_name == "Picard":
-            return 23
+            return 21
         elif label_name == "SaltBae":
-            return 24
+            return 22
         elif label_name == "SideEyeingChloe":
-            return 25
+            return 23
         elif label_name == "Stonks":
-            return 26
-        elif label_name == "ThatEscalatedQuickly":
-            return 27
-        elif label_name == "Trololo":
-            return 28
+            return 24
         elif label_name == "WomanYellingAtCat":
-            return 29
-        elif label_name == "YouKnowIHadToDoItToEm":
-            return 30
+            return 25
         else: # NotAMeme
             return 0
