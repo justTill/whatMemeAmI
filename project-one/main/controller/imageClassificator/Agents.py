@@ -31,7 +31,7 @@ class Agents:
         agent.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
 
         # same procedure, but with 50 convolution filter
-        agent.add(Conv2D(50, (5, 5), padding="same"))
+        agent.add(Conv2D(50, (5, 5), padding="same", name="last_conv_layer"))
         agent.add(Activation("relu"))
         agent.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
 

@@ -24,7 +24,7 @@ gym==0.17.2
 h5py==2.10.0
 idna==2.8
 importlib-metadata==0.23
-Keras==2.3.1
+Keras==2.4.3
 Keras-Applications==1.0.8
 Keras-Preprocessing==1.1.2
 Markdown==3.2.2
