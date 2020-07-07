@@ -32,8 +32,8 @@ class AgentTrainer:
                                                                                     labels, test_size=0.25,
                                                                                     random_state=42)
         # convert the labels from integers to vectors
-        training_labels = to_categorical(training_labels, num_classes=31)
-        test_labels = to_categorical(test_labels, num_classes=31)
+        training_labels = to_categorical(training_labels, num_classes=26)
+        test_labels = to_categorical(test_labels, num_classes=26)
 
         return training_data, test_data, training_labels, test_labels
 
@@ -43,7 +43,7 @@ class AgentTrainer:
         tf.random.set_seed(42)
         agent_builder = Agents()
         # build our neural network together
-        agent = agent_builder.build_neural_network_agent(width=64, height=64, depth=3, classes=31)
+        agent = agent_builder.build_neural_network_agent(width=64, height=64, depth=3, classes=26)
         # we use the Adam optimizer
         # lr = learningrate
         # decay = learningrate slowly goes down the further we train the agent
@@ -60,7 +60,7 @@ class AgentTrainer:
         print("[INFO] compiling model...")
         agent_builder = Agents()
         # build our neural network together
-        agent = agent_builder.build_neural_network_agent(width=64, height=64, depth=3, classes=31)
+        agent = agent_builder.build_neural_network_agent(width=64, height=64, depth=3, classes=26)
         # lr = learningrate
         # decay = learningrate slowly goes down the further we train the agent
         optimizer = RMSprop(learning_rate=INIT_LR)

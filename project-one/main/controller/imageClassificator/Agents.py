@@ -69,7 +69,7 @@ class Agents:
         # get label name
         image_label_name = self.get_label_name(image_label)
         # get random label name (agents guess)
-        guessed_label = self.get_label_name(random.randrange(0, 30, 1))
+        guessed_label = self.get_label_name(random.randrange(0, 25, 1))
         # calculate the percentage of the agent guessing right
         percentage = self.get_percentage_of_label(labels, guessed_label)
 
@@ -85,57 +85,47 @@ class Agents:
         elif label_number == 4:
             return "BitchPlease"
         elif label_number == 5:
-            return "BrentRambo"
-        elif label_number == 6:
             return "CashMeOutside"
-        elif label_number == 7:
+        elif label_number == 6:
             return "ChubbyBubblesGirl"
-        elif label_number == 8:
+        elif label_number == 7:
             return "CondescendingWonka"
-        elif label_number == 9:
+        elif label_number == 8:
             return "ConfusedBlackGirl"
-        elif label_number == 10:
+        elif label_number == 9:
             return "ConfusedMathLady"
-        elif label_number == 11:
+        elif label_number == 10:
             return "ConfusedTravolta"
-        elif label_number == 12:
+        elif label_number == 11:
             return "ConspiracyKeanu"
-        elif label_number == 13:
+        elif label_number == 12:
             return "DistractedBoyfriend"
-        elif label_number == 14:
+        elif label_number == 13:
             return "FreeRealEstate"
-        elif label_number == 15:
+        elif label_number == 14:
             return "GoodGuyGreg"
-        elif label_number == 16:
+        elif label_number == 15:
             return "HideThePainHarold"
-        elif label_number == 17:
+        elif label_number == 16:
             return "IsThisAPigeon"
-        elif label_number == 18:
+        elif label_number == 17:
             return "LazyCollegeSenior"
-        elif label_number == 19:
+        elif label_number == 18:
             return "MatrixMorpheus"
-        elif label_number == 20:
-            return "MeAndTheBoys"
-        elif label_number == 21:
+        elif label_number == 19:
             return "OneDoesNotSimply"
-        elif label_number == 22:
+        elif label_number == 20:
             return "OverlyAttachedGirlfriend"
-        elif label_number == 23:
+        elif label_number == 21:
             return "Picard"
-        elif label_number == 24:
+        elif label_number == 22:
             return "SaltBae"
-        elif label_number == 25:
+        elif label_number == 23:
             return "SideEyeingChloe"
-        elif label_number == 26:
+        elif label_number == 24:
             return "Stonks"
-        elif label_number == 27:
-            return "ThatEscalatedQuickly"
-        elif label_number == 28:
-            return "Trololo"
-        elif label_number == 29:
+        elif label_number == 25:
             return "WomanYellingAtCat"
-        elif label_number == 30:
-            return "YouKnowIHadToDoItToEm"
         else:
             return "NotAMeme"
 
