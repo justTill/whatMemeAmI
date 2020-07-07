@@ -6,6 +6,11 @@
         <br>
             <img src="{{ user_image }}">
         <br>
+        {% if heatmap_path%}
+            <br>
+                <img src="{{ heatmap_path }}">
+            <br>
+        {% endif %}
         <span>gehört zur folgenden Meme Kategorie</span>
         <br>
         <span>{{ predicted_class }}</span>
@@ -16,7 +21,6 @@
     {% endif %}
     <br>
 </div>
-
 <form action="{% url 'main:classify_image' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <h3> Classifiy Image</h3>

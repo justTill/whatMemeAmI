@@ -16,8 +16,10 @@ class Classificator:
         user_image_data = preprocessor.preprocessing_user_image(user_image_name)
         model = load_model(path)
         percentage_of_classes = model.predict(user_image_data)[0]
+        heat_map_created = False
         try:
             self.create_heatmap_for_user_image(model, percentage_of_classes, user_image_data, user_image_name)
+            heat_map_created = True
             print("could created heatmap")
         except:
             print("could not created heatmap: try again")
@@ -26,7 +28,7 @@ class Classificator:
             except:
                 print("second attempt to create heatmap failed")
 
-        return self.get_highest_labels_with_percentage(percentage_of_classes)
+        return self.get_highest_labels_with_percentage(percentage_of_classes), heat_map_created
 
     def get_highest_labels_with_percentage(self, percentage_of_classes):
         agents = Agents()
@@ -71,12 +73,12 @@ class Classificator:
         heatmap /= np.max(heatmap)
         plt.matshow(heatmap)
         # save the small heatmap
-        plt.savefig("./staticfiles/images/pixelHeatmap.png")
+        plt.savefig("./mediafiles/images/pixelHeatmap.png")
         plt.close("all")
         # load the User image
         image_logic = ImageLogic()
         user_image = image_logic.get_image_with_name(image_name)
-        img = cv2.imread("mediafiles/" + user_image[0].image.__str__())
+        img = cv2.imread("."+user_image.get().image.url)
 
         # resize the heatmap to user image size
         heatmap = cv2.resize(heatmap, (img.shape[1], img.shape[0]))
@@ -87,6 +89,6 @@ class Classificator:
         # how intense should the colors be & and apply?
         hif = .8
         superimposed_img = heatmap * hif + img
-        output_path = './staticfiles/images/userImageWithHeatmap.png'
+        output_path = './mediafiles/images/userImageWithHeatmap.png'
         # save user image with heatmap
         cv2.imwrite(output_path, superimposed_img)
