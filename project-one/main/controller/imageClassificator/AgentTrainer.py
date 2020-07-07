@@ -94,7 +94,6 @@ class AgentTrainer:
                                             epochs=EPOCHS, verbose=1)
 
         self.save_agent_to_disk(agent, path)
-
         return history_of_the_training
 
     def save_history_graph_to_disk(self, history, path):

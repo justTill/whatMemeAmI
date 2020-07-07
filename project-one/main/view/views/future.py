@@ -38,25 +38,36 @@ def classify_image(request):
     button = request.POST.get('button')
     context = get_context()
     if image_name:
-        user_image = imageLogic.get_image_with_name(image_name).get()
         if button == 'agent_one':
-            data = classificator.classifiy_image_from_user(image_name, "main/trainedAgents/agent_RMSprop.h5")
-            process_classified_data(data, context, user_image)
+            classify_image_from_user_with_agent(image_name, 'main/trainedAgents/agent_RMSprop.h5', context)
+
         elif button == 'agent_two':
-            data = classificator.classifiy_image_from_user(image_name, "main/trainedAgents/agent_Adam.h5")
-            process_classified_data(data, context, user_image)
+            classify_image_from_user_with_agent(image_name, 'main/trainedAgents/agent_Adam.h5', context)
 
     return render(request, 'templates/future.html', context)
 
 
-def process_classified_data(data, context, user_image):
+def classify_image_from_user_with_agent(image_name, agent_path, context):
+    data, heatmap_created = classificator.classifiy_image_from_user(image_name, agent_path)
+    process_classified_data(data, context)
+
+    context.update(({
+        "user_image": imageLogic.get_image_with_name(image_name).get().image.url
+    }))
+
+    if heatmap_created:
+        context.update(({
+            "heatmap_path": "./mediafiles/images/userImageWithHeatmap.png"
+        }))
+
+
+def process_classified_data(data, context):
     max_label = data["max_label"]
     max_percentage = data["max_percentage"]
     context.update(({
         "predicted_class": max_label,
         "max_percentage": max_percentage * 100,
         "predicted_class_image_path": "images/" + max_label + ".jpg",
-        "user_image": user_image.image.url
     }))
     if max_percentage <= 0.7:
         second_label = data["second_label"]

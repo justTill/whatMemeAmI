@@ -20,7 +20,7 @@ class ImagePreprocessor:
             raise ValueError("no User Image was found with that name: " + image_name.__str__())
 
         print("[INFO] loading User image...")
-        image = cv2.imread("mediafiles/" + user_image[0].image.__str__())
+        image = cv2.imread("."+user_image.get().image.url)
         image = cv2.resize(image, (64, 64))
         image = image.astype("float") / 255.0
         image = img_to_array(image)
