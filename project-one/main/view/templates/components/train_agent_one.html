@@ -1,8 +1,11 @@
-<h3>Train Agent One</h3>
+<div class="flex-box-content box-card-style">
+<h3>Training - Agent 1</h3>
 <form action="{% url 'main:train_agent_one' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <label>Random Seed:</label>
-    <br>
-    <input type="number" name="randomSeedTrainAgentOne" placeholder="default = 1">
-    <button type="submit" name="button">Train agent one</button>
+    <div class="random-seed-field">
+      <label>Random Seed:</label>
+      <input type="number" name="randomSeedTrainAgentOne" placeholder="default = 1">
+    </div>
+    <button type="submit" name="button">Trainieren</button>
 </form>
+</div>

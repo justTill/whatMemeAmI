@@ -1,40 +1,9 @@
-<div>
- {% load static %}
-    {% if predicted_class and max_percentage %}
-        <br>
-        <span>Dein Bild </span>
-        <br>
-            <img src="{{ user_image }}">
-        <br>
-        {% if heatmap_path%}
-            <br>
-                <img src="{{ heatmap_path }}">
-            <br>
-        {% endif %}
-        <span>gehört zur folgenden Meme Kategorie</span>
-        <br>
-        <span>{{ predicted_class }}</span>
-        <br>
-        <img src="{% static predicted_class_image_path %}">
-        <br>
-        <span>Dein Bild stimmt zu {{ max_percentage }}% mit dem Meme Template überein</span>
-    {% endif %}
-    {% if second_predicted_class and second_percentage %}
-        <br>
-        <span>{{ second_predicted_class }}</span>
-            <br>
-            <img src="{% static second_predicted_class_image_path %}">
-            <br>
-            <span>Dein Bild stimmt zu {{ second_percentage }}% mit dem Meme Template überein</span>
-        <br>
-    {% endif %}
-</div>
+<div class="flex-box-content box-card-style">
 <form action="{% url 'main:classify_image' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <h3> Classifiy Image</h3>
-    <div class="fieldWrapper">
-        <label>Select Image to be classified</label>
-        <br>
+    <h3>Klassifiziere dein Bild</h3>
+    <p>Wähle hier das zu klassifizierende Bild aus:</p>
+    <div class="fieldWrapper" id="imageSelector">
         {% if image_names|length != 0 %}
             <select name="imageNames" size="1">
                 {% for name in image_names %}
@@ -45,7 +14,7 @@
             Bitte erst ein Bild hochladen
         {%endif%}
     </div>
-    <br>
     <button type="submit" name="button" value="agent_one">Agent 1 Klassifizierung</button>
     <button type="submit" name="button" value="agent_two">Agent 2 Klassifizierung</button>
 </form>
+</div>

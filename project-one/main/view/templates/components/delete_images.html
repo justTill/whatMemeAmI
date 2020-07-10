@@ -1,15 +1,16 @@
 <form action="{% url 'main:delete_images' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div>
-        <h3>All available Images by name</h3>
+        <h3>Hochgeladene Bilder</h3>
+        <ul id="uploaded-images-list">
         {% for name in image_names%}
+        <li>
             <input class="checkbox" type="checkbox" name="deleteImageBox" value="{{ name }}">
-            <span>{{ name }}
-            </span>
-            <br>
+            <label>{{ name }}</label>
+        </li>
         {% endfor %}
-        <br>
-        <button class="delete" type="submit">Delete Images</button>
+        </ul>
+        <button class="delete" type="submit">Löschen</button>
     </div>
     <br>
 </form>

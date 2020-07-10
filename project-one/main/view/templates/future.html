@@ -1,6 +1,8 @@
 {% extends './base_layout.html' %}
 {% block content %}
-    <h3><a href="/">Back to Main Menu</a></h3>
+<div class="flex-box-container">
     {% include 'templates/components/upload_image_form.html' %}
     {% include 'templates/components/classify_image.html' %}
+</div>
+{% include 'templates/components/classify_result.html' %}
 {% endblock %}
