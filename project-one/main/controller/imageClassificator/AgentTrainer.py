@@ -10,13 +10,13 @@ from tensorflow.keras.optimizers import RMSprop
 from main.controller.logic import ImagePreprocessor
 
 # Number of learning repetitions
-EPOCHS = 35
+EPOCHS = 150
 
 # Learningrate -> how strong are the result weighted
 INIT_LR = 1e-3
 
 # How many Images a taken for each learning repetitions
-BS = 35
+BS = 64
 
 # image generator for data augmentation -> for additional test images
 aug = ImageDataGenerator(rotation_range=30, width_shift_range=0.1,
@@ -32,8 +32,8 @@ class AgentTrainer:
                                                                                     labels, test_size=0.25,
                                                                                     random_state=42)
         # convert the labels from integers to vectors
-        training_labels = to_categorical(training_labels, num_classes=26)
-        test_labels = to_categorical(test_labels, num_classes=26)
+        training_labels = to_categorical(training_labels, num_classes=25)
+        test_labels = to_categorical(test_labels, num_classes=25)
 
         return training_data, test_data, training_labels, test_labels
 
@@ -43,7 +43,7 @@ class AgentTrainer:
         tf.random.set_seed(42)
         agent_builder = Agents()
         # build our neural network together
-        agent = agent_builder.build_neural_network_agent(width=64, height=64, depth=3, classes=26)
+        agent = agent_builder.build_neural_network_agent(width=224, height=224, depth=1, classes=25)
         # we use the Adam optimizer
         # lr = learningrate
         # decay = learningrate slowly goes down the further we train the agent
@@ -58,9 +58,10 @@ class AgentTrainer:
     def compile_neural_network_with_RMSprop(self):
         # initialize the model
         print("[INFO] compiling model...")
+        tf.random.set_seed(42)
         agent_builder = Agents()
         # build our neural network together
-        agent = agent_builder.build_neural_network_agent(width=64, height=64, depth=3, classes=26)
+        agent = agent_builder.build_neural_network_agent(width=224, height=224, depth=1, classes=25)
         # lr = learningrate
         # decay = learningrate slowly goes down the further we train the agent
         optimizer = RMSprop(learning_rate=INIT_LR)
@@ -92,6 +93,7 @@ class AgentTrainer:
                                             validation_data=(test_data, test_labels),
                                             steps_per_epoch=len(training_data) // BS,
                                             epochs=EPOCHS, verbose=1)
+
 
         self.save_agent_to_disk(agent, path)
         return history_of_the_training
