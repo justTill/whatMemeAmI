@@ -1,15 +1,22 @@
 {% extends './base_layout.html' %}
 {% block content %}
-    <h2>Main Menu</h2>
-    <a href="/settings">Einstellungen</a>
-<p> Do you  want to go left or right?</p>
+<h1>What Meme Am I?</h1>
 {% load static %}
-    <div id="left">
-        <a href="/submission" ><img src="{% static 'images/left.png' %}" class="responsive"> </a>
-        <p><a href="/submission"><span id="ra">LEFT:</span></a><br>You will maybe find some <span id="ra">Random Agent</span>. <br>It might be some sort of content important for grading...<br>But who am I to judge that?</p>
-    </div>
-    <div id="right">
+    <div id="index-top-container">
         <a href="/future"><img src="{% static 'images/right.png' %}" class="responsive"></a>
-        <p><a href="/future"><span id="ra">RIGHT:</span></a><br>I heard something about future functions hiding on this side...<br>You will either find a pot of gold<br>or buttons not working and a form to upload pictures.</p>
+        <div id="index-top-wrapper" onclick="location.href='/future';">
+            <p><strong>What Meme Am I?</strong><br>
+                Erfahre hier welchem Meme du ähnlich siehst!
+            </p>
+        </div>
+
+    </div>
+    <div id="index-bottom-container">
+        <a href="/submission"><img src="{% static 'images/left.png' %}" class="responsive"></a>
+        <div id="index-bottom-wrapper" onclick="location.href='/submission';">
+            <p><strong>Random Agent</strong><br>
+                Hier erfährst du...nichts.
+            </p>
+        </div>
     </div>
 {% endblock %}

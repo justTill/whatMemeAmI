@@ -1,0 +1,23 @@
+<div id="classify-results-container">
+ {% load static %}
+    {% if predicted_class and max_percentage %}
+
+    <h3>Dein Ergebnis</h3>
+    <h4>{{ max_percentage }}% Übereinstimmung mit <strong> {{ predicted_class }} </strong></h4>
+    <div class="predictions">
+        <img class="classified-images" src="{{ user_image }}">
+        {% if heatmap_path%}
+           <img class="classified-images" src="{{ heatmap_path }}">
+        {% endif %}
+           <img class="classified-images" src="{% static predicted_class_image_path %}">
+        {% endif %}
+    </div>
+    {% if second_predicted_class and second_percentage %}
+    <h4>Weitere Übereinstimmungen: </h4>
+    <p> {{ second_percentage }}% mit <strong>{{ second_predicted_class }}</strong></p>
+    <div class="more-predictions">
+         <img src="{% static second_predicted_class_image_path %}">
+    </div>
+    {% endif %}
+</div>
+

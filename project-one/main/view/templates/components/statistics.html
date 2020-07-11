@@ -1,21 +1,20 @@
-<div>
+<div id="statistics-container">
     {% load static %}
-    <h3>Statistiken für die Agenten</h3>
-    <h4>Erklärung</h4>
-    <ul>
+    <h3>Statistiken der Agenten</h3>
+    <ul data-header="Erklärung">
         <li>train loss:</li>
         <li>val loss:</li>
         <li>train acc:</li>
         <li>val acc:</li>
     </ul>
-    <div>
-        Agent with RMSprop optimizer
-        <br>
-        <img src="{% static '/images/RMSprop_agent_plot.png' %}">
-    </div>
-    <div>
-        Agent with Adam optimizer
-        <br>
-        <img src="{% static '/images/Adam_agent_plot.png' %}">
+    <div class="flex-box-container">
+        <div class="flex-box-content box-card-style">
+            <h4>Agent mit RMSprop optimizer</h4>
+            <img src="{% static '/images/RMSprop_agent_plot.png' %}">
+        </div>
+        <div class="flex-box-content box-card-style">
+            <h4>Agent mit Adam optimizer</h4>
+            <img src="{% static '/images/Adam_agent_plot.png' %}">
+        </div>
     </div>
 </div>

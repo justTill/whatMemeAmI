@@ -1,9 +1,10 @@
 {% extends './base_layout.html' %}
 {% block content %}
-    <h3><a href="/">Back to Main Menu</a></h3>
     {% include 'templates/components/delete_images.html' %}
+<div class="flex-box-container">
     {% include 'templates/components/train_agent_one.html' %}
     {% include 'templates/components/train_agent_two.html' %}
+</div>
     {% include 'templates/components/statistics.html' %}
 
 {% endblock %}
