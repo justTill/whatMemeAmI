@@ -1,16 +1,16 @@
 <div class="flex-box-content box-card-style">
 <form action="{% url 'main:save_new_user_image' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <h3>Lade dein Bild hoch</h3>
+    <h3>Upload your images</h3>
     {{ upload_image_form.non_field_errors }}
     <div class="fieldWrapper">
-        <label>Bildname:</label>
+        <label>Image name:</label>
         {{ upload_image_form.name }}
     </div>
     <div class="fieldWrapper">
-        <label>Bild:</label>
+        <label>Image:</label>
         {{ upload_image_form.image }}
     </div>
-    <button type="submit" value="Upload">Hochladen</button>
+    <button type="submit" value="Upload">Upload</button>
 </form>
 </div>

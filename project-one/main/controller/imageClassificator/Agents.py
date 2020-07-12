@@ -23,22 +23,24 @@ class Agents:
         agent = Sequential()
         inputShape = (height, width, depth)
 
-        # We are adding 20 convolution filter which are 5x5 and "slide" over the image and sum up the 25 values too one
+        # We are adding 16 convolution filter which are 5x5 and "slide" over the image and sum up the 25 values too one
         # The convolution filter finds feature points in our image
         agent.add(Conv2D(16, (5, 5), padding="same", input_shape=inputShape))
-
         agent.add(Activation("relu"))
         # iterate through the image with an 2x2 pixel pattern and get the highest pixel value
         agent.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
+
+        # same procedure but with 32 convolution filter
+        agent.add(Conv2D(32, (5, 5), padding="same"))
+        agent.add(Activation("relu"))
+        agent.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
+
         # same procedure
         agent.add(Conv2D(32, (5, 5), padding="same"))
         agent.add(Activation("relu"))
         agent.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
 
-        agent.add(Conv2D(32, (5, 5), padding="same"))
-        agent.add(Activation("relu"))
-        agent.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
-
+        # same procedure but with 64 convolution filter
         agent.add(Conv2D(64, (5, 5), padding="same", name='last_conv_layer'))
         agent.add(Activation("relu"))
         agent.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))

@@ -1,19 +1,19 @@
 <div id="statistics-container">
     {% load static %}
-    <h3>Statistiken der Agenten</h3>
+    <h3>Statistics of the agents</h3>
     <ul data-header="Erklärung">
-        <li>train loss:</li>
-        <li>val loss:</li>
-        <li>train acc:</li>
-        <li>val acc:</li>
+        <li>Train loss: Training loss is the error on the training set of data</li>
+        <li>Val loss: Validation loss is the error after running the validation set of data through the trained network</li>
+        <li>Train acc: The accuracy of a agent on examples it has seen while training</li>
+        <li>Val acc: The accuracy of the agent from images that is has not seen while training</li>
     </ul>
     <div class="flex-box-container">
         <div class="flex-box-content box-card-style">
-            <h4>Agent mit RMSprop optimizer</h4>
+            <h4>Agent with 'RMSprop' optimizer</h4>
             <img src="{% static '/images/RMSprop_agent_plot.png' %}">
         </div>
         <div class="flex-box-content box-card-style">
-            <h4>Agent mit Adam optimizer</h4>
+            <h4>Agent with 'Adam' optimizer</h4>
             <img src="{% static '/images/Adam_agent_plot.png' %}">
         </div>
     </div>

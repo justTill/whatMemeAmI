@@ -1,8 +1,8 @@
 <div class="flex-box-content box-card-style">
 <form action="{% url 'main:classify_image' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <h3>Klassifiziere dein Bild</h3>
-    <p>Wähle hier das zu klassifizierende Bild aus:</p>
+    <h3>Classify your Image</h3>
+    <p>Choose the image for classification:</p>
     <div class="fieldWrapper" id="imageSelector">
         {% if image_names|length != 0 %}
             <select name="imageNames" size="1">
@@ -11,10 +11,10 @@
                 {% endfor %}
             </select>
         {% else %}
-            Bitte erst ein Bild hochladen
+            Upload an image first.
         {%endif%}
     </div>
-    <button type="submit" name="button" value="agent_one">Agent 1 Klassifizierung</button>
-    <button type="submit" name="button" value="agent_two">Agent 2 Klassifizierung</button>
+    <button type="submit" name="button" value="agent_one">Agent RMSprop classification</button>
+    <button type="submit" name="button" value="agent_two">Agent Adam classification</button>
 </form>
 </div>
