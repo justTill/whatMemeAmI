@@ -1,7 +1,7 @@
 <form action="{% url 'main:delete_images' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div>
-        <h3>Hochgeladene Bilder</h3>
+        <h3>Uploaded Images</h3>
         <ul id="uploaded-images-list">
         {% for name in image_names%}
         <li>
@@ -10,7 +10,7 @@
         </li>
         {% endfor %}
         </ul>
-        <button class="delete" type="submit">Löschen</button>
+        <button class="delete" type="submit">Delete</button>
     </div>
     <br>
 </form>

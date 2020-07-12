@@ -46,7 +46,6 @@ class AgentTrainer:
         agent = agent_builder.build_neural_network_agent(width=224, height=224, depth=1, classes=26)
         # we use the Adam optimizer
         # lr = learningrate
-        # decay = learningrate slowly goes down the further we train the agent
         optimizer = Adam(lr=INIT_LR)
         # compile our model: with the optimize, loss function and we want accurate metrics
         agent.compile(optimizer=optimizer,
@@ -63,7 +62,6 @@ class AgentTrainer:
         # build our neural network together
         agent = agent_builder.build_neural_network_agent(width=224, height=224, depth=1, classes=26)
         # lr = learningrate
-        # decay = learningrate slowly goes down the further we train the agent
         optimizer = RMSprop(learning_rate=INIT_LR)
         # compile our model: with the optimize, loss function and we want accurate metrics
         agent.compile(optimizer=optimizer,
@@ -93,7 +91,6 @@ class AgentTrainer:
                                             validation_data=(test_data, test_labels),
                                             steps_per_epoch=len(training_data) // BS,
                                             epochs=EPOCHS, verbose=1)
-
 
         self.save_agent_to_disk(agent, path)
         return history_of_the_training

@@ -1,11 +1,11 @@
 <div class="flex-box-content box-card-style">
-<h3>Training - Agent with Adam optimizer</h3>
+<h3>Training - agent with 'Adam' optimizer</h3>
 <form action="{% url 'main:train_agent_two' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="random-seed-field">
         <label>Random Seed:</label>
         <input type="number" name="randomSeedTrainAgentTwo" placeholder="default = 1">
     </div>
-    <button type="submit" name="button">Trainieren</button>
+    <button type="submit" name="button">Training</button>
 </form>
 </div>
