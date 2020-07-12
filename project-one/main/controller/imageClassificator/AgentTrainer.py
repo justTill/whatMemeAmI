@@ -47,7 +47,7 @@ class AgentTrainer:
         # we use the Adam optimizer
         # lr = learningrate
         # decay = learningrate slowly goes down the further we train the agent
-        optimizer = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
+        optimizer = Adam(lr=INIT_LR, decay=INIT_LR/EPOCHS)
         # compile our model: with the optimize, loss function and we want accurate metrics
         agent.compile(optimizer=optimizer,
                       loss="categorical_crossentropy",

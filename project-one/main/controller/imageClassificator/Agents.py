@@ -58,7 +58,6 @@ class Agents:
         agent.add(Activation("softmax"))
         # return the constructed network architecture
         return agent
-
     """
     radom agents takes a random image out of the (not all images that are used later for training are present) trainingsdata,
     a random label and calculate the probability of the agent being right
