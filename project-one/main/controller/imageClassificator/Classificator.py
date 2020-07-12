@@ -46,7 +46,7 @@ class Classificator:
     def create_heatmap_for_user_image(self, model, percentage, preprocessed_user_image_data, image_name):
         # to use K.gradients later
         tf.compat.v1.disable_eager_execution()
-        #get Last conv layer from model
+        # get Last conv layer from model
         last_conv_layer = model.get_layer('last_conv_layer')
         # index of the hightes percentage
         argmax = np.argmax([percentage])
@@ -74,7 +74,7 @@ class Classificator:
         # load the User image
         image_logic = ImageLogic()
         user_image = image_logic.get_image_with_name(image_name)
-        img = cv2.imread("."+user_image.get().image.url)
+        img = cv2.imread("." + user_image.get().image.url)
 
         # resize the heatmap to user image size
         heatmap = cv2.resize(heatmap, (img.shape[1], img.shape[0]))
