@@ -7,6 +7,7 @@ from tensorflow.keras.layers import Activation
 from tensorflow.keras.layers import Flatten
 from tensorflow.keras.layers import Dense
 from main.controller.logic import ImagePreprocessor
+from tensorflow.python.keras.layers import Dropout, BatchNormalization
 
 
 class Agents:
@@ -24,14 +25,21 @@ class Agents:
 
         # We are adding 20 convolution filter which are 5x5 and "slide" over the image and sum up the 25 values too one
         # The convolution filter finds feature points in our image
-        agent.add(Conv2D(20, (5, 5), padding="same", input_shape=inputShape))
+        agent.add(Conv2D(16, (5, 5), padding="same", input_shape=inputShape))
 
         agent.add(Activation("relu"))
         # iterate through the image with an 2x2 pixel pattern and get the highest pixel value
         agent.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
+        # same procedure
+        agent.add(Conv2D(32, (5, 5), padding="same"))
+        agent.add(Activation("relu"))
+        agent.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
 
-        # same procedure, but with 50 convolution filter
-        agent.add(Conv2D(50, (5, 5), padding="same", name="last_conv_layer"))
+        agent.add(Conv2D(32, (5, 5), padding="same"))
+        agent.add(Activation("relu"))
+        agent.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
+
+        agent.add(Conv2D(64, (5, 5), padding="same", name='last_conv_layer'))
         agent.add(Activation("relu"))
         agent.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
 
@@ -39,17 +47,17 @@ class Agents:
         agent.add(Flatten())
         # apply connections (fully connected layers)
         agent.add(Dense(512))
-        # another relu activation
+        # add dropout to prevent a bit overfitting
+        agent.add(Dropout(0.5))
         agent.add(Activation("relu"))
-
+        # to keep overfitting as small as possibly
+        agent.add(BatchNormalization())
         # connect the output values with all existing classes -> so we can calculate the probability for each class
         agent.add(Dense(classes))
         # classifier: will give us the probability for each class
         agent.add(Activation("softmax"))
-
         # return the constructed network architecture
         return agent
-
     """
     radom agents takes a random image out of the (not all images that are used later for training are present) trainingsdata,
     a random label and calculate the probability of the agent being right

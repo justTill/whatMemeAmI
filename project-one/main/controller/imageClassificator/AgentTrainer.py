@@ -43,11 +43,11 @@ class AgentTrainer:
         tf.random.set_seed(42)
         agent_builder = Agents()
         # build our neural network together
-        agent = agent_builder.build_neural_network_agent(width=64, height=64, depth=3, classes=26)
+        agent = agent_builder.build_neural_network_agent(width=224, height=224, depth=1, classes=26)
         # we use the Adam optimizer
         # lr = learningrate
         # decay = learningrate slowly goes down the further we train the agent
-        optimizer = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
+        optimizer = Adam(lr=INIT_LR)
         # compile our model: with the optimize, loss function and we want accurate metrics
         agent.compile(optimizer=optimizer,
                       loss="categorical_crossentropy",
@@ -60,7 +60,7 @@ class AgentTrainer:
         print("[INFO] compiling model...")
         agent_builder = Agents()
         # build our neural network together
-        agent = agent_builder.build_neural_network_agent(width=64, height=64, depth=3, classes=26)
+        agent = agent_builder.build_neural_network_agent(width=224, height=224, depth=1, classes=26)
         # lr = learningrate
         # decay = learningrate slowly goes down the further we train the agent
         optimizer = RMSprop(learning_rate=INIT_LR)
