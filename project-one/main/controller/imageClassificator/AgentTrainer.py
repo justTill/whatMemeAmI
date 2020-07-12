@@ -10,13 +10,13 @@ from tensorflow.keras.optimizers import RMSprop
 from main.controller.logic import ImagePreprocessor
 
 # Number of learning repetitions
-EPOCHS = 35
+EPOCHS = 150
 
 # Learningrate -> how strong are the result weighted
 INIT_LR = 1e-3
 
 # How many Images a taken for each learning repetitions
-BS = 35
+BS = 64
 
 # image generator for data augmentation -> for additional test images
 aug = ImageDataGenerator(rotation_range=30, width_shift_range=0.1,
@@ -43,11 +43,11 @@ class AgentTrainer:
         tf.random.set_seed(42)
         agent_builder = Agents()
         # build our neural network together
-        agent = agent_builder.build_neural_network_agent(width=64, height=64, depth=3, classes=26)
+        agent = agent_builder.build_neural_network_agent(width=224, height=224, depth=1, classes=26)
         # we use the Adam optimizer
         # lr = learningrate
         # decay = learningrate slowly goes down the further we train the agent
-        optimizer = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
+        optimizer = Adam(lr=INIT_LR)
         # compile our model: with the optimize, loss function and we want accurate metrics
         agent.compile(optimizer=optimizer,
                       loss="categorical_crossentropy",
@@ -60,7 +60,7 @@ class AgentTrainer:
         print("[INFO] compiling model...")
         agent_builder = Agents()
         # build our neural network together
-        agent = agent_builder.build_neural_network_agent(width=64, height=64, depth=3, classes=26)
+        agent = agent_builder.build_neural_network_agent(width=224, height=224, depth=1, classes=26)
         # lr = learningrate
         # decay = learningrate slowly goes down the further we train the agent
         optimizer = RMSprop(learning_rate=INIT_LR)
