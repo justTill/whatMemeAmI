@@ -18,15 +18,11 @@ class Classificator:
         percentage_of_classes = model.predict(user_image_data)[0]
         heat_map_created = False
         try:
-            self.create_heatmap_for_user_image(model, percentage_of_classes, user_image_data, user_image_name)
-            heat_map_created = True
+            # self.create_heatmap_for_user_image(model, percentage_of_classes, user_image_data, user_image_name)
+            # heat_map_created = True
             print("could created heatmap")
         except:
             print("could not created heatmap: try again")
-            try:
-                self.create_heatmap_for_user_image(model, percentage_of_classes, user_image_data, user_image_name)
-            except:
-                print("second attempt to create heatmap failed")
 
         return self.get_highest_labels_with_percentage(percentage_of_classes), heat_map_created
 
