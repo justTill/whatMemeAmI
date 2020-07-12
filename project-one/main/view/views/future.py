@@ -42,7 +42,7 @@ def classify_image(request):
             classify_image_from_user_with_agent(image_name, 'main/trainedAgents/agent_RMSprop.h5', context)
 
         elif button == 'agent_two':
-            classify_image_from_user_with_agent(image_name, 'main/trainedAgents/agent_Adam2.h5', context)
+            classify_image_from_user_with_agent(image_name, 'main/trainedAgents/agent_Adam.h5', context)
 
     return render(request, 'templates/future.html', context)
 
