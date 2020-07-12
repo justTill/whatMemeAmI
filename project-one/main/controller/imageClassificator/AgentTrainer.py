@@ -10,13 +10,13 @@ from tensorflow.keras.optimizers import RMSprop
 from main.controller.logic import ImagePreprocessor
 
 # Number of learning repetitions
-EPOCHS = 35
+EPOCHS = 150
 
 # Learningrate -> how strong are the result weighted
 INIT_LR = 1e-3
 
 # How many Images a taken for each learning repetitions
-BS = 35
+BS = 64
 
 # image generator for data augmentation -> for additional test images
 aug = ImageDataGenerator(rotation_range=30, width_shift_range=0.1,
