@@ -20,8 +20,8 @@ class ImagePreprocessor:
             raise ValueError("no User Image was found with that name: " + image_name.__str__())
 
         print("[INFO] loading User image...")
-        image = cv2.imread("."+user_image.get().image.url)
-        image = cv2.resize(image, (64, 64))
+        image = cv2.imread("."+user_image.get().image.url, cv2.IMREAD_GRAYSCALE)
+        image = cv2.resize(image, (224, 224))
         image = image.astype("float") / 255.0
         image = img_to_array(image)
         image = np.expand_dims(image, axis=0)
@@ -41,8 +41,8 @@ class ImagePreprocessor:
         # loop over the images paths
         for path in image_paths:
             # load the image, pre-process it, and store it in the data list
-            image = cv2.imread(path)
-            image = cv2.resize(image, (64, 64))
+            image = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
+            image = cv2.resize(image, (224, 224))
             image = img_to_array(image)
             data.append(image)
             # extract the class label from the image path and update the
