@@ -69,7 +69,7 @@ def process_classified_data(data, context):
         "max_percentage": round((max_percentage * 100), 3),
         "predicted_class_image_path": "images/" + max_label + ".jpg",
     }))
-    if max_percentage <= 0.99:
+    if max_percentage <= 0.80:
         second_label = data["second_label"]
         second_percentage = data["second_percentage"]
         context.update(({
